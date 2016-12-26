@@ -14,13 +14,18 @@ import { FactionsListPage } from './pages/factions-list/factions-list.page';
 
 //  Services
 import { SuperheroesService } from './services/superheroes.service';
-import { FactionsService } from './services/factions-service';
+import { FactionsService } from './services/factions.service';
+import { ToursService } from './services/tours.service';
+
+// Modules
+import {TourModule} from './pages/tours-list/tour.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes, { useHash: true })
+    RouterModule.forRoot(appRoutes, { useHash: true }),
+    TourModule
   ],
   declarations: [
     AppComponent,
@@ -30,7 +35,8 @@ import { FactionsService } from './services/factions-service';
   bootstrap: [AppComponent],
   providers: [
     SuperheroesService,
-    FactionsService
+    FactionsService,
+    ToursService
   ]
 })
 export class AppModule { }

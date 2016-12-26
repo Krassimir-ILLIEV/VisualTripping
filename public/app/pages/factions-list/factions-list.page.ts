@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { PageComponent } from './../page.component';
 
 import { Faction } from './../../models/faction.model';
-import { FactionsService } from '../../services/factions-service';
+import { FactionsService } from '../../services/factions.service';
 
 @Component({
     moduleId: module.id,

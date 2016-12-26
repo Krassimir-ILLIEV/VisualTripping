@@ -1,0 +1,14 @@
+<h1>Tour details!</h1>
+<ul>
+    <li *ngFor="let tourPoint of tour.tourPoints">
+        {{tourPoint.country}} {{tourPoint.city}} {{tourPoint.from}} {{tourPoint.to}} {{tourPoint.price}}
+    </li>
+    {{tour.totalPrice | currency:'USD':true:'1.2-2'}}
+</ul>
+{{tour.dateCreated}} 
+{{tour.description}}
+<div class='panel-footer'>
+    <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+<i class='glyphicon glyphicon-chevron-left'></i> Back
+</a>
+</div>

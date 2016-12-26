@@ -9,27 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var factions_service_1 = require('../../services/factions.service');
-var FactionsListPage = (function () {
-    function FactionsListPage(factionsService) {
-        this.factionsService = factionsService;
-        this.factions = [];
+var tours_service_1 = require('../../services/tours.service');
+var ToursListPage = (function () {
+    function ToursListPage(toursData) {
+        this.toursData = toursData;
+        this.tours = [];
     }
-    FactionsListPage.prototype.ngOnInit = function () {
+    ToursListPage.prototype.ngOnInit = function () {
         var _this = this;
-        this.factionsService.getAll()
-            .then(function (factions) {
-            _this.factions = factions;
+        this.toursData.getAll()
+            .then(function (tours) {
+            _this.tours = tours;
         });
     };
-    FactionsListPage = __decorate([
+    ToursListPage = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: './factions-list.page.html'
+            templateUrl: './tours-list.page.html'
         }), 
-        __metadata('design:paramtypes', [factions_service_1.FactionsService])
-    ], FactionsListPage);
-    return FactionsListPage;
+        __metadata('design:paramtypes', [tours_service_1.ToursService])
+    ], ToursListPage);
+    return ToursListPage;
 }());
-exports.FactionsListPage = FactionsListPage;
-//# sourceMappingURL=factions-list.page.js.map
+exports.ToursListPage = ToursListPage;
+//# sourceMappingURL=tours-list.page.js.map

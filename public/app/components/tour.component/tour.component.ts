@@ -1,5 +1,5 @@
-import { Superhero } from '../../models/superhero.model';
-import { SuperheroesService } from '../../services/superheroes.service';
+//import { Superhero } from '../../models/superhero.model';
+//import { SuperheroesService } from '../../services/superheroes.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Http } from '@angular/http';
@@ -12,10 +12,9 @@ import { Http } from '@angular/http';
   <nav>
     <a routerLink="/superheroes-list" routerLinkActive="active">Superheroes</a>
     <a routerLink="/factions-list" routerLinkActive="active">Factions</a>
-    <a routerLink="/tours-list" routerLinkActive="active">Tours</a>    
   </nav>
   <router-outlet>
   </router-outlet>
   `
 })
-export class AppComponent { }
+export class TourComponent { }

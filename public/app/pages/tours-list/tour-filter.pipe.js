@@ -9,27 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var factions_service_1 = require('../../services/factions.service');
-var FactionsListPage = (function () {
-    function FactionsListPage(factionsService) {
-        this.factionsService = factionsService;
-        this.factions = [];
+var TourFilterByKeyWordPipe = (function () {
+    function TourFilterByKeyWordPipe() {
     }
-    FactionsListPage.prototype.ngOnInit = function () {
-        var _this = this;
-        this.factionsService.getAll()
-            .then(function (factions) {
-            _this.factions = factions;
-        });
+    TourFilterByKeyWordPipe.prototype.transform = function (value, filterBy) {
+        filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
+        return filterBy ? value.filter(function (tour) {
+            return tour.keywords.indexOf(filterBy) > -1;
+        }) : value;
     };
-    FactionsListPage = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            templateUrl: './factions-list.page.html'
+    TourFilterByKeyWordPipe = __decorate([
+        core_1.Pipe({
+            name: 'tourFilterByKeyWord'
         }), 
-        __metadata('design:paramtypes', [factions_service_1.FactionsService])
-    ], FactionsListPage);
-    return FactionsListPage;
+        __metadata('design:paramtypes', [])
+    ], TourFilterByKeyWordPipe);
+    return TourFilterByKeyWordPipe;
 }());
-exports.FactionsListPage = FactionsListPage;
-//# sourceMappingURL=factions-list.page.js.map
+exports.TourFilterByKeyWordPipe = TourFilterByKeyWordPipe;
+//# sourceMappingURL=tour-filter.pipe.js.map

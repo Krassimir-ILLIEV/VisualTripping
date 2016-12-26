@@ -19,7 +19,10 @@ var superheroes_list_page_1 = require('./pages/superheroes-list/superheroes-list
 var factions_list_page_1 = require('./pages/factions-list/factions-list.page');
 //  Services
 var superheroes_service_1 = require('./services/superheroes.service');
-var factions_service_1 = require('./services/factions-service');
+var factions_service_1 = require('./services/factions.service');
+var tours_service_1 = require('./services/tours.service');
+// Modules
+var tour_module_1 = require('./pages/tours-list/tour.module');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,7 +31,8 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
-                router_1.RouterModule.forRoot(routes_1.appRoutes, { useHash: true })
+                router_1.RouterModule.forRoot(routes_1.appRoutes, { useHash: true }),
+                tour_module_1.TourModule
             ],
             declarations: [
                 app_component_1.AppComponent,
@@ -38,7 +42,8 @@ var AppModule = (function () {
             bootstrap: [app_component_1.AppComponent],
             providers: [
                 superheroes_service_1.SuperheroesService,
-                factions_service_1.FactionsService
+                factions_service_1.FactionsService,
+                tours_service_1.ToursService
             ]
         }), 
         __metadata('design:paramtypes', [])

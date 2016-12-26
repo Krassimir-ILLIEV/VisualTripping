@@ -32,4 +32,4 @@ var FactionsService = (function () {
 }());
 exports.FactionsService = FactionsService;
 ;
-//# sourceMappingURL=factions-service.js.map
+//# sourceMappingURL=factions.service.js.map

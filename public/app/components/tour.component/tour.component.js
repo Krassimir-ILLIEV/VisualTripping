@@ -8,28 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+//import { Superhero } from '../../models/superhero.model';
+//import { SuperheroesService } from '../../services/superheroes.service';
 var core_1 = require('@angular/core');
-var factions_service_1 = require('../../services/factions.service');
-var FactionsListPage = (function () {
-    function FactionsListPage(factionsService) {
-        this.factionsService = factionsService;
-        this.factions = [];
+var TourComponent = (function () {
+    function TourComponent() {
     }
-    FactionsListPage.prototype.ngOnInit = function () {
-        var _this = this;
-        this.factionsService.getAll()
-            .then(function (factions) {
-            _this.factions = factions;
-        });
-    };
-    FactionsListPage = __decorate([
+    TourComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            templateUrl: './factions-list.page.html'
+            selector: 'my-app',
+            template: "\n  <h1>The Superheroes Universe!</h1>\n  <nav>\n    <a routerLink=\"/superheroes-list\" routerLinkActive=\"active\">Superheroes</a>\n    <a routerLink=\"/factions-list\" routerLinkActive=\"active\">Factions</a>\n  </nav>\n  <router-outlet>\n  </router-outlet>\n  "
         }), 
-        __metadata('design:paramtypes', [factions_service_1.FactionsService])
-    ], FactionsListPage);
-    return FactionsListPage;
+        __metadata('design:paramtypes', [])
+    ], TourComponent);
+    return TourComponent;
 }());
-exports.FactionsListPage = FactionsListPage;
-//# sourceMappingURL=factions-list.page.js.map
+exports.TourComponent = TourComponent;
+//# sourceMappingURL=tour.component.js.map

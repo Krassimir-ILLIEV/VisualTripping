@@ -9,18 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var platform_browser_1 = require('@angular/platform-browser');
+var forms_1 = require('@angular/forms');
+var tour_detail_page_1 = require('../../pages/tour-detail/tour-detail.page');
+var tours_service_1 = require('../../../app/services/tours.service');
+var TourDetailModule = (function () {
+    function TourDetailModule() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            template: "\n  <h1>The Superheroes Universe!</h1>\n  <nav>\n    <a routerLink=\"/superheroes-list\" routerLinkActive=\"active\">Superheroes</a>\n    <a routerLink=\"/factions-list\" routerLinkActive=\"active\">Factions</a>\n    <a routerLink=\"/tours-list\" routerLinkActive=\"active\">Tours</a>    \n  </nav>\n  <router-outlet>\n  </router-outlet>\n  "
+    TourDetailModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                platform_browser_1.BrowserModule,
+                forms_1.FormsModule
+            ],
+            declarations: [
+                tour_detail_page_1.TourDetailPage
+            ],
+            providers: [
+                tours_service_1.ToursService
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], TourDetailModule);
+    return TourDetailModule;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.TourDetailModule = TourDetailModule;
+//# sourceMappingURL=tour-detail.module.js.map
