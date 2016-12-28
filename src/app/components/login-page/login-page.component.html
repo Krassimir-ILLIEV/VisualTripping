@@ -1,16 +1,16 @@
 <div class="container">
-  <form [formGroup]="user" #loginForm="ngForm" class="form-login" (ngSubmit)="login()">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <div class="form-group">
-        <label for="form-username" class="sr-only">Username</label>
-        <input id="form-username" name="username" class="form-control" placeholder="Username" required autofocus type="text" formControlName="username">
-        <span class="text-danger" *ngIf="!user.controls['username'].valid && user.controls['username'].touched">Please enter correct username</span>
-    </div>
-    <div class="form-group">
-        <label for="form-password" class="sr-only">Password</label>
-        <input id="form-password" name="password" class="form-control" placeholder="Password" required type="password" formControlName="password">
-        <span class="text-danger" *ngIf="!user.controls['password'].valid && user.controls['password'].touched">Please enter correct password</span>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </form>
+    <form [formGroup]="user" #loginForm="ngForm" class="form-login" (ngSubmit)="login()">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <div class="form-group">
+            <label for="form-username" class="sr-only">Username</label>
+            <input id="form-username" name="username" class="form-control" placeholder="Username" required autofocus type="text" formControlName="username">
+            <span class="text-danger" *ngIf="!user.controls['username'].valid && user.controls['username'].touched">Please enter correct username</span>
+        </div>
+        <div class="form-group">
+            <label for="form-password" class="sr-only">Password</label>
+            <input id="form-password" name="password" class="form-control" placeholder="Password" required type="password" formControlName="password">
+            <span class="text-danger" *ngIf="!user.controls['password'].valid && user.controls['password'].touched">Please enter correct password</span>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
 </div>
