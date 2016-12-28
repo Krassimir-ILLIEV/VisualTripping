@@ -9,6 +9,7 @@ import { CollapseDirective } from 'ng2-bootstrap';
 
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     AppComponent,
     HomePageComponent,
     LoginPageComponent,
+    RegisterPageComponent,
 
     CollapseDirective
   ],
