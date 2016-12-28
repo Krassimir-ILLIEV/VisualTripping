@@ -6,15 +6,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     templateUrl: './login-page.component.html'
 })
 export class LoginPageComponent implements OnInit {
-    // public user: FormGroup;
     public user: FormGroup;
 
     constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
         this.user = this.fb.group({
-            'username': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-            'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+            'username': ['',
+                Validators.compose([
+                    Validators.required,
+                    Validators.minLength(4),
+                    Validators.pattern('[A-Za-z0-9]{4,}')
+                ])
+            ],
+            'password': ['',
+                Validators.compose([
+                    Validators.required,
+                    Validators.minLength(6),
+                    Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$')
+                ])
+            ],
         });
     }
 
