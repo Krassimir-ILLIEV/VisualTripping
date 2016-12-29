@@ -10,6 +10,7 @@ import { CollapseDirective } from 'ng2-bootstrap';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import {TourListPageModule} from './components/tour-page/tours-list/tours-list-page.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { RegisterPageComponent } from './components/register-page/register-page.
     routing,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    TourListPageModule
   ],
   declarations: [
     AppComponent,
