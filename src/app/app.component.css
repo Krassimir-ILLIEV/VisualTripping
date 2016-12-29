@@ -1,6 +1,6 @@
 #root {
     height: auto;
-    min-height: 90vh;
+    min-height: 89vh;
     background: url('http://www.cifftravelsandtours.com.ng/wp-content/uploads/2014/07/CiffTravelandTours_Banner1.png');
     background-attachment: fixed;
     background-size: cover;
@@ -10,8 +10,13 @@
 .main {
     width: 100%;
     margin: 60px auto;
+    min-height: 70vh;
 }
 
 footer {
     text-align: center;
+    color: black;
+}
+footer p{
+    margin: 5px;
 }
