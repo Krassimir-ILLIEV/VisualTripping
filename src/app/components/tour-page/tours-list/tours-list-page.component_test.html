@@ -42,11 +42,7 @@
 
     </div>
 
-    
-
-
-
-    <ol>
+        <ol>
         <li *ngFor="let tour of tours | tourFilterByKeyWord:listFilter">
             <a [routerLink]="['/tour', tour.id]">{{tour.id}}</a>
             <ul>
@@ -58,12 +54,3 @@
             {{tour.totalPrice}} {{tour.dateCreated}} {{tour.description}}
         </li>
     </ol>
-
-    div.form-section div.row form(role='form' method="GET" action="/tours?") div.col-md-4 div.form-group input#location.form-control(type='text',
-    placeholder='Country' name="country") div.col-md-4 div.form-group input#location.form-control(type='text', placeholder='City'
-    name="city") div.col-md-2 div.form-group div.input-group input#from.form-control(type='text', placeholder='From' name="start")
-    span.input-group-addon i.fa.fa-calendar(aria-hidden="true" ) div.col-md-2 div.form-group div.input-group input#to.form-control(type='text',
-    placeholder='To' name="end") span.input-group-addon i.fa.fa-calendar(aria-hidden="true") .col-md-2 button.btn.btn-default.btn-primary(type='submit')
-    Search i.fa.fa-search(aria-hidden="true") if tours div each tour in tours div.list-group.profile-tours.col-md-6.col-lg-6.col-sm-12.col-xs-12
-    a.list-group-item.active(href="/tours/details/"+ tour._id)= tour.headline a.list-group-item= tour.country a.list-group-item=
-    tour.city a.list-group-item= tour.description
