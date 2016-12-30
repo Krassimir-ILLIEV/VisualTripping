@@ -1,5 +1,5 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import { Tour } from '../../../../models/tour.model';
+import { Tour } from '../../../models/tour.model';
 
 @Pipe({
     name: 'tourFilterByKeyWord'

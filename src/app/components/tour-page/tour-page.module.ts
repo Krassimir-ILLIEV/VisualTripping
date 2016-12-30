@@ -3,32 +3,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ToursListPageComponent } from './tours-list-page.component';
-import { TourDetailPageComponent } from '../tour-detail/tour-detail-page.component';
+import { TourPageComponent } from './tour-page.component';
+import { SearchTourComponent } from './search-tour.component';
+import { TourListComponent } from './tour-list.component';
+import { TourFormComponent } from './tour-form.component';
 import { TourFilterByKeyWordPipe } from './tours-list-page-filter.pipe';
-import { ToursService } from '../../../../services/tours.service';
-import { TourDetailModule } from '../tour-detail/tour-detail-page.module';
+import { ToursService } from '../../../services/tours.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    TourDetailModule,
     RouterModule.forChild([
-      { path: 'tours', component: ToursListPageComponent },
+      { path: 'tours', component: TourPageComponent },
       {
         path: 'tours/:id',
         //canActivate: [ ProductDetailGuard],
-        component: TourDetailPageComponent
+        component: TourFormComponent
       }
     ])
   ],
   declarations: [
-    ToursListPageComponent,
+    TourPageComponent,
+    SearchTourComponent,
+    TourListComponent,
+    TourFormComponent,
     TourFilterByKeyWordPipe
   ],
   providers: [
     ToursService
   ]
 })
-export class TourListPageModule { }
+export class TourPageModule { }
