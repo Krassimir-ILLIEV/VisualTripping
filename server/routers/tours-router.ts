@@ -1,4 +1,30 @@
 import { Router, Response, Request } from 'express';
+import * as someData from './../data';
+import { tourController } from './../controllers/tour-controller';
+
+let data;
+if (someData) {
+    data = {
+        getTourById: (id) => {
+            return someData.tourModule.getTourById(id);
+        },
+        getUserByUsername: (username) => {
+            console.log(username);
+        },
+        updateTour: (tour) => {
+            console.log(tour);
+        },
+        updateUser: (user) => {
+            console.log(user);
+        },
+        getSearchResults: (search, prop, sort) => {
+            return someData.tourModule.getSearchResults(search, prop, sort);
+        }
+    };
+}
+
+
+const tourContr = tourController({ data });
 
 const toursRouter: Router = Router();
 
@@ -51,13 +77,7 @@ let testingTours = [
     tour2
 ];
 
-toursRouter.get('/', (req: Request, res: Response) => {
-    res.json({ testingTours });
-})
-    .get('/:id', (req: Request, res: Response) => {
-        res.json({
-            result: testingTours[req.params.id]
-        });
-    });
+toursRouter.get('/', tourContr.getSearchResults)
+    .get('/:id', tourContr.getTourById);
 
 export { toursRouter };

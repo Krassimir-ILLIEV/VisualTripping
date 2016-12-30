@@ -4,18 +4,37 @@ import { Tour } from '../../../../models/tour.model';
 
 @Component({
     //moduleId: module.id,
-    templateUrl: './tours-list-page.component.html'
+    //templateUrl: './tours-list-page.component.html'
+    template: `
+        <div *ngFor="let tour of tours">
+            <a [routerLink]="['/tours', tour._id]">{{tour.title}}</a>
+            <p>{{tour.creator}}</p>
+            <p>{{tour.city}}</p>
+            <p>{{tour.description}}</p>
+            <p>{{tour.endTourDate}}</p> 
+        </div>
+    `
 })
 export class ToursListPageComponent implements OnInit {
-    tours: Tour[] = [];
+    tours: {
+        _id: any,
+        title: any,
+        creator: any,
+        description: any,
+        city: any,
+        country: any,
+        endTourDate: any
+    }[];
     listFilter: string;
 
-    constructor(private toursData: ToursService) { }
+    constructor(private toursData: ToursService) {
+        this.tours = [];
+    }
 
     ngOnInit() {
         this.toursData.getAll()
-            .then(tours => {
-                this.tours = tours;
+            .subscribe(data => {
+                this.tours = data.tours;
             });
     }
 }

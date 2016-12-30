@@ -10,6 +10,5 @@ export class SliderComponent {
 
     @Input('images') set imagesArr(images: any){
         this.images = images;
-        console.log(this.images);
     }
 }
