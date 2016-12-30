@@ -15,22 +15,24 @@ export class ToursService {
     private toursUrlById = '/api/tours/';
     constructor(private http: Http) { }
 
-    getAll(): Promise<Tour[]> {
+    getAll() {
         return this.http.get(this.toursUrl)
-            .toPromise()
-            .then(response => {
-                let data = response.json() as ResponseResult<Tour[]>;
-                return data.result;
-            });
+            .map((res: Response) => res.json());
+        // .toPromise()
+        // .then(response => {
+        //     let data = response.json() as ResponseResult<Tour[]>;
+        //     return data.result;
+        // });
     }
 
-    getTourDetailsById(id: number): Promise<Tour> {
+    getTourDetailsById(id: string) {
         return this.http.get(this.toursUrlById + id)
-            .toPromise()
-            .then(response => {
-                let data = response.json() as ResponseResult<Tour>;
-                return data.result;
-            });
+            .map((res: Response) => res.json());
+        // .toPromise()
+        // .then(response => {
+        //     let data = response.json() as ResponseResult<Tour>;
+        //     return data.result;
+        // });
     }
 
     // getTourDetailsById(id: number): Observable<Tour> {

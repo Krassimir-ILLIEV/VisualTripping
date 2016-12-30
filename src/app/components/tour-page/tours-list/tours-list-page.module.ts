@@ -17,7 +17,7 @@ import { TourDetailModule } from '../tour-detail/tour-detail-page.module';
     RouterModule.forChild([
       { path: 'tours', component: ToursListPageComponent },
       {
-        path: 'tour/:id',
+        path: 'tours/:id',
         //canActivate: [ ProductDetailGuard],
         component: TourDetailPageComponent
       }

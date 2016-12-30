@@ -8,27 +8,33 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     //moduleId: module.id,
-    templateUrl: './tour-detail-page.component.html'
+    //templateUrl: './tour-detail-page.component.html'
+    template: `
+        <div>
+            <p>{{tour.title}}<p>        
+            <p>{{tour.creator}}</p>
+            <p>{{tour.city}}</p>
+            <p>{{tour.description}}</p>
+            <p>{{tour.endTourDate}}</p> 
+        </div>
+    `
 })
 export class TourDetailPageComponent implements OnInit {
-    tour = {};
+    tour: any;
     errorMessage: string;
 
     constructor(private toursData: ToursService,
         private _route: ActivatedRoute,
-        private _router: Router) { }
+        private _router: Router) {
+        this.tour = {};
+    }
 
     ngOnInit(): void {
         this._route.params.subscribe(
             params => {
-                let id = +params['id'];
+                let id = params['id'];
                 this.getTour(id);
             });
-        // this.sub = this._route.params.subscribe(
-        //     params => {
-        //         let id = +params['id'];
-        //         this.getTour(id);
-        //     });
     }
 
     ngOnDestroy(): void {
@@ -39,10 +45,10 @@ export class TourDetailPageComponent implements OnInit {
         this._router.navigate(['/tours']);
     }
 
-    getTour(id: number): void {
+    getTour(id: string): void {
         this.toursData.getTourDetailsById(id)
-            .then((tour: Tour) => {
-                this.tour = tour;
+            .subscribe(data => {
+                this.tour = data.tour;
             });
     }
 }

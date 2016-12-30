@@ -1,4 +1,22 @@
+#root {
+    height: auto;
+    min-height: 89vh;
+    background: url('http://www.cifftravelsandtours.com.ng/wp-content/uploads/2014/07/CiffTravelandTours_Banner1.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .main {
-    width: 80%;
+    width: 100%;
     margin: 60px auto;
+    min-height: 70vh;
+}
+
+footer {
+    text-align: center;
+    color: black;
+}
+footer p{
+    margin: 5px;
 }
