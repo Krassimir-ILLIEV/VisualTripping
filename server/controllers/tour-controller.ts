@@ -1,4 +1,5 @@
-function tourController({ data }) {
+// function tourController({ data })
+module.exports = function({ data }) {
     return {
         get(req, res) {
             const isLogged = !!req.user;
@@ -145,7 +146,7 @@ function tourController({ data }) {
 
                 search.endTourDate = { $lt: date };
             }
-
+            
             data.getSearchResults(search, {}, { sort: { endJoinDate: +1 } })
                 .then(tours => {
                     // const isLogged = !!req.user;
@@ -163,6 +164,6 @@ function tourController({ data }) {
                 });
         }
     };
-}
+};
 
-export { tourController }
+// export { tourController }

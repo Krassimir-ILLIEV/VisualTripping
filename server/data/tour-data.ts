@@ -1,4 +1,5 @@
-function tourData(models) {
+// function tourData(models)
+module.exports = function (models) {
     const { Tour } = models;
 
     return {
@@ -110,4 +111,4 @@ function tourData(models) {
     };
 };
 
-export { tourData }
+//export { tourData }

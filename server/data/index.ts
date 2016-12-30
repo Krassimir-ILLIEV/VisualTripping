@@ -1,51 +1,32 @@
-const mongoose = require('mongoose');
-// import * as fs from 'fs';
-// import * as path from 'path';
-//import { Tour } from './../models/tour-model';
-import { tourData } from './tour-data';
+let mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 
+module.exports = function (connectionString) {
+    // Override mongoose Promise, because it is depricated
+    mongoose.Promise = global.Promise;
+    mongoose.connect('mongodb://localhost/VisualTripping');
+    const User = require('../models/user-model.js')({ mongoose });
+    const Tour = require('../models/tour-model.js')({ mongoose });
+    // const Country = require('../models/country-model.js');
+    // const City = require('../models/city-model.js');
+    const models = { User, Tour, /* Country, City*/ };
+    const data = {};
 
-const tourSchema = new mongoose.Schema({
-    creator: String,
-    headline: { type: String, required: true },
-    city: { type: String, required: true },
-    country: { type: String, required: true },
-    description: String,
-    price: Number,
-    maxUser: Number,
-    endJoinDate: Date,
-    beginTourDate: Date,
-    endTourDate: Date,
-    isValid: Boolean,
-    isDeleted: Boolean,
-    usersInTour: []
-});
+    // It finds all properties
+    // of the data models and hang them to 'data'
+    fs.readdirSync('./dist/server/data')
+        .filter(x => {
+            return x.includes('-data') && !x.includes('.map');
+        })
+        .forEach(file => {
+            const dataModule = require(path.join(__dirname, file))(models); //use only models
 
-tourSchema.virtual('getUserCount').get(function () {
-    let usersCount = this.usersInTour.length;
+            Object.keys(dataModule)
+                .forEach(key => {
+                    data[key] = dataModule[key];
+                });
+        });
 
-    return usersCount;
-});
-
-tourSchema.virtual('getId').get(function () {
-    let tourId = this._id.toString();
-
-    return tourId;
-});
-
-tourSchema.methods.isUserExist = function (username) {
-    let isUserExist = this.usersInTour.includes(username);
-
-    return isUserExist;
+    return data;
 };
-
-mongoose.model('tour', tourSchema);
-
-let Tour = mongoose.model('tour');
-
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/VisualTripping');
-
-const tourModule = tourData({ Tour });
-
-export { tourModule }
