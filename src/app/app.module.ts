@@ -14,6 +14,8 @@ import { TourPageModule } from './components/tour-page/tour-page.module';
 import { SliderComponent } from './components/slider/slider.component';
 import { CreateTourPageComponent } from './components/create-tour-page/create-tour-page.component';
 
+import { UserService } from './../services/user.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -33,7 +35,10 @@ import { CreateTourPageComponent } from './components/create-tour-page/create-to
 
     CollapseDirective
   ],
-  providers: [FormBuilder],
+  providers: [
+    FormBuilder,
+    UserService
+  ],
   bootstrap: [
     AppComponent
   ]
