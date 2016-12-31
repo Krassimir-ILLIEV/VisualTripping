@@ -1,6 +1,7 @@
 .carousel {
     overflow: hidden;
-    width: 100%;
+    width: 80%;
+    margin: auto;
 }
 
 .slides {
@@ -15,6 +16,7 @@
     -webkit-animation: carousel 60s infinite;
     animation: carousel 60s infinite;
     padding: 0px;
+    margin-bottom: 0px;
 }
 
 .slides>li {

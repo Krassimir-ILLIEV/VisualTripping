@@ -1,5 +1,5 @@
 // function tourController({ data })
-module.exports = function({ data }) {
+module.exports = function ({ data }) {
     return {
         get(req, res) {
             const isLogged = !!req.user;
@@ -128,7 +128,7 @@ module.exports = function({ data }) {
 
             if (req.query.country) {
                 const string = req.query.country;
-                const country = new RegExp(["^", string, "$"].join(""), "i");
+                country = new RegExp(["^", string, "$"].join(""), "i");
                 search.country = country;
             }
 
@@ -146,14 +146,14 @@ module.exports = function({ data }) {
 
                 search.endTourDate = { $lt: date };
             }
-            
+
             data.getSearchResults(search, {}, { sort: { endJoinDate: +1 } })
                 .then(tours => {
                     // const isLogged = !!req.user;
                     // const user = {
                     //     isLogged: isLogged
                     // };
-
+                    console.log('HERE' + req.isAuthenticated());
                     res.status(200)
                         .json({ tours });
                 })

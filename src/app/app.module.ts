@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { LocalStorageModule } from 'angular-2-local-storage';
+
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { CollapseDirective } from 'ng2-bootstrap';
@@ -23,7 +25,11 @@ import { UserService } from './../services/user.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    TourPageModule
+    TourPageModule,
+    LocalStorageModule.withConfig({
+            prefix: 'app-root',
+            storageType: 'localStorage'
+        })
   ],
   declarations: [
     AppComponent,

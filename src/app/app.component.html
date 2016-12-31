@@ -17,9 +17,10 @@
                     <li role="presentation"><a class="navbar-brand" routerLink="/create">Create Tour</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li role="presentation"><a class="navbar-brand" routerLink="/login">Login</a></li>
-                    <li role="presentation"><a class="navbar-brand" routerLink="/register">Register</a></li>
-                    <li role="presentation"><a class="navbar-brand" routerLink="/logout">Logout</a></li>
+                    <li *ngIf="!isLogged" role="presentation"><a class="navbar-brand" routerLink="/login">Login</a></li>
+                    <li *ngIf="!isLogged" role="presentation"><a class="navbar-brand" routerLink="/register">Register</a></li>
+                    <li *ngIf="isLogged" role="presentation"><a class="navbar-brand" routerLink="/logout">{{isLogged}}</a></li>
+                    <li *ngIf="isLogged" role="presentation"><a class="navbar-brand" routerLink="/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
