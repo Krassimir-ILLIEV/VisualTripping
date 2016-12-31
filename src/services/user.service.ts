@@ -8,10 +8,15 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService {
-    private userUrl = '/api/user';
+    private registerUrl = '/api/user/register';
+    private loginUrl = 'api/user/login';
     constructor(private http: Http) { }
 
     register(user: any) {
-        return this.http.post(this.userUrl, user);
+        return this.http.post(this.registerUrl, user);
+    }
+
+    login(user: any) {
+        return this.http.post(this.loginUrl, user);
     }
 }

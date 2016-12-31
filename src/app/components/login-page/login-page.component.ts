@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from './../../../services/user.service';
 
 @Component({
     selector: 'app-login-form',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
     public user: FormGroup;
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private userService: UserService) { }
 
     ngOnInit() {
         this.user = this.fb.group({
@@ -22,16 +23,19 @@ export class LoginPageComponent implements OnInit {
             'password': ['',
                 Validators.compose([
                     Validators.required,
-                    Validators.minLength(6),
-                    Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$')
+                    Validators.minLength(5),
+                    Validators.pattern('.{5,}$')
+                    // Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$')
                 ])
             ],
         });
     }
 
     login(): void {
-        console.log(this.user.controls);
+        console.log(this.user.value);
         console.log('login');
         //call the auth service to login the user
+        this.userService.login(this.user.value)
+            .subscribe(res => console.log(res));
     }
 }

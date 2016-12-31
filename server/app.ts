@@ -1,13 +1,14 @@
 import * as express from 'express';
-import * as cors from 'cors';
-import { app } from './config/application';
-
-//import { toursRouter } from './routers/tours-router';
-
-const fs = require("fs");
-const path = require("path");
+// import * as cors from 'cors';
+// import { app } from './config/application';
+// const express = require('express');
 let connectionSting: 'mongodb://localhost/VisualTripping';
 const data = require('./data')(connectionSting);
+const app = require('./config/application')({ express, data });
+
+// import { toursRouter } from './routers/tours-router';
+const fs = require('fs');
+const path = require('path');
 
 
 // api routes
