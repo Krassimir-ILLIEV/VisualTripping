@@ -47,4 +47,8 @@ export class ToursService {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
+
+    publicateTour(Tour: any) {
+        return this.http.post(this.toursUrl, Tour);
+    }
 };

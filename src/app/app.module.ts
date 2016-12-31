@@ -12,6 +12,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { TourPageModule } from './components/tour-page/tour-page.module';
 import { SliderComponent } from './components/slider/slider.component';
+import { CreateTourPageComponent } from './components/create-tour-page/create-tour-page.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { SliderComponent } from './components/slider/slider.component';
     LoginPageComponent,
     RegisterPageComponent,
     SliderComponent,
+    CreateTourPageComponent,
 
     CollapseDirective
   ],
