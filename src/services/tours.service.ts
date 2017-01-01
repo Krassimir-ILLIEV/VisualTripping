@@ -13,10 +13,21 @@ import { Tour } from '../models/tour.model';
 export class ToursService {
     private toursUrl = '/api/tours';
     private toursUrlById = '/api/tours/';
+    private placesUrl = '/api/places';
     constructor(private http: Http) { }
 
     getAll() {
         return this.http.get(this.toursUrl)
+            .map((res: Response) => res.json());
+        // .toPromise()
+        // .then(response => {
+        //     let data = response.json() as ResponseResult<Tour[]>;
+        //     return data.result;
+        // });
+    }
+
+    getAllPlaces() {
+        return this.http.get(this.placesUrl)
             .map((res: Response) => res.json());
         // .toPromise()
         // .then(response => {

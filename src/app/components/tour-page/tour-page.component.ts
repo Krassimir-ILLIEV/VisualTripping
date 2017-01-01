@@ -7,15 +7,15 @@ import { Component } from '@angular/core';
     <div class="row">
       <search-tour-container class="col-md-4" (onSearch)="onSearch($event)"></search-tour-container>
       
-      <tour-list-container class="col-md-8" [listFilter]='listFilter_'></tour-list-container>
+      <tour-list-container class="col-md-8" [listFilter]='search_'></tour-list-container>
     </div>
   </div>
   `
 })
 export class TourPageComponent {
-  listFilter_='';
-  onSearch(s: string) {
-    this.listFilter_=s;
+  search_ = {};
+  onSearch(s: any) {
+    this.search_ = s;
     //alert(s);
   }
 }

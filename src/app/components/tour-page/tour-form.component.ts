@@ -7,55 +7,70 @@ import { ToursService } from '../../../services/tours.service';
 @Component({
   selector: 'tour-form-container',
   template: `
-  <div class="container-fluid well">
-    <div class="row">
-      <div class="col-xs-12">
-        <h2>Appointment</h2>
-      </div>
-    </div>
+<div class="container-fluid well">
 
     <form id="edit-patient-form">
       <div class="row">
         <div class="col-xs-12 form-group">
-          <label>Patient Info</label>
+          <label>Tour Info</label>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-8 form-group">
           <label class="control-label" for="description">Description</label>
           <input type="text" class="form-control" id="description" name="description"
             [(ngModel)]="tour.description" 
             />
         </div>
-        <div class="col-sm-6 form-group">
-          <label class="control-label" for="name">Name</label>
-          <input type="text" class="form-control" id="name" name="totalPrice"
+        <div class="col-sm-2 form-group">
+          <label class="control-label" for="totalPrice">Total Price</label>
+          <input type="number" class="form-control" id="totalPrice" name="totalPrice"
              [(ngModel)]="tour.totalPrice" 
              />
          </div>
-      </div>
+         <div class="col-sm-2 form-group">
+          <label class="control-label" for="maxParticipants">Max Participants</label>
+          <input type="number" class="form-control" id="maxParticipants" name="maxParticipants"
+             [(ngModel)]="tour.maxParticipants" 
+             />
+         </div>
+     </div>
 
       <div class="row">
-        <div class="col-xs-12 form-group">
-          <label>Appointment Info</label>
-        </div>
+      <label class="control-label">Tour Places</label>
+      <div class="row" *ngFor="let tourPoint of tour.tourPoints; let i = index">
+         <div class="col-md-4 col-lg-3 form-group">
+          <select class="form-control" name="place-{{i}}"
+              [(ngModel)]="tourPoint.city">
+              <option *ngFor="let p of places" [value]="p.city">{{p.city + "(" + p.country+")"}}</option>
+          </select>
+          </div>
+
+          <div class="col-md-2 col-lg-2 form-group">
+          <input type="date" class="form-control" name="from-{{i}}"
+          [(ngModel)]="tourPoint.from"
+         />
+         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6 col-lg-3 form-group">
-          <label class="control-label" for="dateCreated">Date Created</label>
-          <input type="date" class="form-control" id="dateCreated" name="dateCreated"
-            [(ngModel)]="tour.dateCreated" 
-            />
+        <div class="col-xs-2 form-group">
+          <div>
+            <button type="button" class="btn btn-primary"
+              (click)="addNext()">
+              Add next...
+            </button>
+          </div>
         </div>
-      </div>
-      <ul>
-    <li *ngFor="let tourPoint of tour.tourPoints">
-        {{tourPoint.country}} {{tourPoint.city}} {{tourPoint.from}} {{tourPoint.to}} {{tourPoint.price}}
-    </li>
-    {{tour.totalPrice | currency:'USD':true:'1.2-2'}}
-</ul>
+
+       
+
+     </div>
+
+
+
+
+
         <!--
         <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="!patientForm.errors.time.isValid">
           <label class="control-label" for="time">Time</label>
@@ -120,6 +135,8 @@ export class TourFormComponent implements OnInit {
 @Input() onChange: (event: any) => void;
 */
   tour = {};
+  place = '';
+  places = [];
 
   constructor(private toursData: ToursService,
     private _route: ActivatedRoute,
@@ -129,7 +146,26 @@ export class TourFormComponent implements OnInit {
     this._route.params.subscribe(
       params => {
         let id = params['id'];
-        this.getTour(id);
+        if (params['id'] === '0') {
+          this.tour = {  //new tour?
+            creator: '',
+            title: '',
+            city: '',
+            country: '',
+            description: '',
+            price: 0,
+            maxUser: 0,
+            endJoinDate: new Date(2016, 12, 10),
+            beginTourDate: new Date(2016, 12, 10),
+            endTourDate: new Date(2016, 12, 10),
+            isValid: false,
+            isDeleted: false,
+            usersInTour: ['']
+          }
+        } else {
+          this.getTour(id);
+        };
+        this.getPlaces();
       });
   }
 
@@ -140,10 +176,29 @@ export class TourFormComponent implements OnInit {
       });
   }
 
+  getPlaces(): void {
+    this.toursData.getAllPlaces()
+      .subscribe(data => {
+        this.places.splice(0, 0, { country: 'None', city: '' }); // = data.tour;
+      });
+  }
+
   navigateBack(event: any): void {
     this._router.navigate(['/tours']);
   }
+
   onSave(event: any): void {
-    alert(JSON.stringify(this.tour));
+    alert(JSON.stringify(this.tour)); //TODO
+  }
+
+  addNext(): void {
+    let point = {
+      country: '',
+      city: '',
+      startDate: new Date(),
+      duration: 0
+    };
+
+    (this.tour as Tour).tourPoints.push(point);
   }
 }
