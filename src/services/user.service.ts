@@ -24,6 +24,8 @@ export class UserService {
     }
 
     isLogged() {
-        return Observable.of(this.localStorageService.get('username'));
+        let user = this.localStorageService.get('username');
+
+        return user ? user : null;
     }
 }

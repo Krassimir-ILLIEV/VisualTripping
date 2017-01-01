@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { UserService } from './../services/user.service';
 
 import 'rxjs/add/operator/catch';
@@ -10,17 +10,13 @@ import 'rxjs/add/operator/map';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements DoCheck {
   public isCollapsed: boolean = true;
   isLogged;
 
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-    this.userService.isLogged()
-      .subscribe(user => {
-      this.isLogged = user ? user : null;
-        console.log(this.isLogged);
-      });
+  ngDoCheck() {
+    this.isLogged = this.userService.isLogged();
   }
 }
