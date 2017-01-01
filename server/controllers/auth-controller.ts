@@ -1,15 +1,15 @@
-module.exports = function({ data }) {
+module.exports = function ({ data }) {
     const validator = require('./../utils/validator');
     return {
+        login(req, res) {
+            res.json({ success: true, message: 'login successful' });
+        },
         logout(req, res) {
             req.logout();
             req.session.destroy();
-            res.json({success: true, message: 'logout successful!'});
+            res.json({ success: true, message: 'logout successful!' });
         },
-        createUser(req, res) {
-
-            console.log(req.body);
-
+        registerUser(req, res) {
             if (!validator.validateString(req.body.username)) {
                 res.status(400).send('Username must be string and atleast 3 characters!');
             } else if (!validator.validateString(req.body.firstname, 2)) {
@@ -29,7 +29,7 @@ module.exports = function({ data }) {
 
                 data.createUser(user)
                     .then(() => {
-                        res.json({success: true, message: 'register success'});
+                        res.json({ success: true, message: 'register success' });
                     })
                     .catch(err => {
                         res.status(404)

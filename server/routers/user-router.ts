@@ -1,20 +1,19 @@
 module.exports = function ({ app, data, express }) {
     const passport = require('passport');
     const authController = require('./../controllers/auth-controller')({ data });
+    const userController = require('./../controllers/user-controller')({ data });
     const userRouter = new express.Router();
 
-    userRouter.post('/register', authController.createUser)
-        // .post('/login', (req, res) => {
-        //     console.log(req.body);
-        // });
-        .post('/login', passport.authenticate('local', { failureRedirect: '/api/user/failed-login', failureFlash: true }), (req, res) => {
-            console.log('loged in!');
-            res.json({ success: true, message: 'login successful' });
-        })
+    userRouter.post('/register', authController.registerUser)
+        .post('/login',
+            passport.authenticate('local', { failureRedirect: '/api/user/failed-login', failureFlash: true }),
+            authController.login)
         .get('/logout', authController.logout)
         .get('/failed-login', (req, res) => {
             res.json({ success: false, message: 'Invalid username or password.' });
-        });
+        })
+        .get('/profile', userController.getLoggedUserData)
+        .get('/user/:username', userController.getUserByUsername);
 
-    app.use('/api/user', userRouter);
+    app.use('/api/users', userRouter);
 };

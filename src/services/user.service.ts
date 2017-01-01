@@ -5,9 +5,11 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService {
-    private registerUrl = '/api/user/register';
-    private loginUrl = 'api/user/login';
-    private logoutUrl = 'api/user/logout';
+    private usersUrl = '/api/users';
+    private registerUrl = this.usersUrl + '/register';
+    private loginUrl = this.usersUrl + '/login';
+    private logoutUrl = this.usersUrl + '/logout';
+    private profileUrl = this.usersUrl + '/profile';
     private userStorage: string = 'username';
     constructor(private http: Http,
         private localStorageService: LocalStorageService) { }
@@ -39,5 +41,15 @@ export class UserService {
 
                 return res.message;
             });
+    }
+
+    getUserByUsername(username: string) {
+        return this.http.get(this.usersUrl + '/user/' + username)
+            .map((res: Response) => res.json());
+    }
+
+    getUserProfile() {
+        return this.http.get(this.profileUrl)
+            .map((res: Response) => res.json());
     }
 }
