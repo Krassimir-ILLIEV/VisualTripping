@@ -5,6 +5,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { TourPageComponent } from './components/tour-page/tour-page.component';
 import { CreateTourPageComponent } from './components/create-tour-page/create-tour-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 
 const routes: Route[] = [
@@ -13,6 +14,7 @@ const routes: Route[] = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'tours', component: TourPageComponent },
   { path: 'create', component: CreateTourPageComponent },
+  { path: 'profile', component: ProfilePageComponent },
   { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
 
