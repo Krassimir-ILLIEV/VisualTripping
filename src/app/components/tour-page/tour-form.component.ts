@@ -135,6 +135,8 @@ export class TourFormComponent implements OnInit {
 @Input() onChange: (event: any) => void;
 */
   tour = {};
+  place = '';
+  places = [];
 
   constructor(private toursData: ToursService,
     private _route: ActivatedRoute,
@@ -162,7 +164,8 @@ export class TourFormComponent implements OnInit {
           }
         } else {
           this.getTour(id);
-        }
+        };
+        this.getPlaces();
       });
   }
 
@@ -173,10 +176,29 @@ export class TourFormComponent implements OnInit {
       });
   }
 
+  getPlaces(): void {
+    this.toursData.getAllPlaces()
+      .subscribe(data => {
+        this.places.splice(0, 0, { country: 'None', city: '' }); // = data.tour;
+      });
+  }
+
   navigateBack(event: any): void {
     this._router.navigate(['/tours']);
   }
+
   onSave(event: any): void {
-    alert(JSON.stringify(this.tour));
+    alert(JSON.stringify(this.tour)); //TODO
+  }
+
+  addNext(): void {
+    let point = {
+      country: '',
+      city: '',
+      startDate: new Date(),
+      duration: 0
+    };
+
+    (this.tour as Tour).tourPoints.push(point);
   }
 }
