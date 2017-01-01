@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './../../../services/user.service';
 import { LocalStorageService } from 'angular-2-local-storage';
@@ -14,7 +15,8 @@ export class LoginPageComponent implements OnInit {
     constructor(private fb: FormBuilder,
         private userService: UserService,
         private localStorageService: LocalStorageService,
-        private notificationsService: NotificationsService) { }
+        private notificationsService: NotificationsService,
+        private router: Router) { }
 
     ngOnInit() {
         this.user = this.fb.group({
@@ -39,12 +41,20 @@ export class LoginPageComponent implements OnInit {
     login(): void {
         this.userService.login(this.user.value)
             .subscribe(res => {
-                this.localStorageService.set('username', this.user.value.username);
 
-                this.notificationsService.success(
-                    res.message,
-                    ''
-                );
+                if (res.success) {
+                this.localStorageService.set('username', this.user.value.username);
+                    this.notificationsService.success(
+                        res.message,
+                        ''
+                    );
+                    this.router.navigate(['./home']);
+                } else {
+                    this.notificationsService.error(
+                        res.message,
+                        ''
+                    );
+                }
             });
     }
 }

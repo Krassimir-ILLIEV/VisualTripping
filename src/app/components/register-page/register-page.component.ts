@@ -1,4 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './../../../services/user.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -12,7 +13,8 @@ export class RegisterPageComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
         private userService: UserService,
-        private notificationsService: NotificationsService) {
+        private notificationsService: NotificationsService,
+        private router: Router) {
 
     }
 
@@ -67,10 +69,18 @@ export class RegisterPageComponent implements OnInit {
         this.userService.register(user)
             .subscribe(res => {
                 console.log(res);
-                this.notificationsService.success(
-                    res.message,
-                    ''
-                );
+                if (res.success) {
+                    this.notificationsService.success(
+                        res.message,
+                        ''
+                    );
+                    this.router.navigate(['./login']);
+                } else {
+                    this.notificationsService.error(
+                        res.message,
+                        ''
+                    );
+                }
             });
     }
 }

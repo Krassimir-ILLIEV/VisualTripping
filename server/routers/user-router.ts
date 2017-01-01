@@ -6,7 +6,7 @@ module.exports = function ({ app, data, express }) {
 
     userRouter.post('/register', authController.registerUser)
         .post('/login',
-            passport.authenticate('local', { failureRedirect: '/api/user/failed-login', failureFlash: true }),
+            passport.authenticate('local', { failureRedirect: '/api/users/failed-login', failureFlash: true }),
             authController.login)
         .get('/logout', authController.logout)
         .get('/failed-login', (req, res) => {

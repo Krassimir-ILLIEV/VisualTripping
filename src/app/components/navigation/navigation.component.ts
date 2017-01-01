@@ -1,5 +1,6 @@
 import { Component, DoCheck } from '@angular/core';
 import { UserService } from './../../../services/user.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
     selector: 'vt-navigation',
@@ -9,7 +10,8 @@ export class NavigationComponent implements DoCheck {
     public isCollapsed: boolean = true;
     isLogged;
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService,
+        private notificationsService: NotificationsService) { }
 
     ngDoCheck() {
         this.isLogged = this.userService.isLogged();
@@ -17,6 +19,18 @@ export class NavigationComponent implements DoCheck {
 
     logout() {
         this.userService.logout()
-            .then(msg => console.log(msg));
+            .then(res => {
+                if (res.success) {
+                    this.notificationsService.success(
+                        res.message,
+                        ''
+                    );
+                } else {
+                    this.notificationsService.error(
+                        res.message,
+                        ''
+                    );
+                }
+            });
     }
 }

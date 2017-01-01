@@ -39,7 +39,7 @@ export class UserService {
                     this.localStorageService.remove(this.userStorage);
                 }
 
-                return res.message;
+                return res;
             });
     }
 
