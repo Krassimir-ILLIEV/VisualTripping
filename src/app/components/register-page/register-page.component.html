@@ -1,29 +1,30 @@
 <div class="container">
     <div class="col-xs-4 col-centered">
-    <form [formGroup]="registerForm" #formRegister="ngForm" class="form-register" (ngSubmit)="register()">
-        <h2 class="form-register-heading">Register Form</h2>
-        <div class="form-group">
-            <label for="form-username" class="sr-only">Username</label>
-            <input id="form-username" name="username" class="form-control" placeholder="Username" required autofocus type="text" formControlName="username">
-            <span class="text-danger" *ngIf="!registerForm.controls['username'].valid && registerForm.controls['username'].touched">Please enter correct username</span>
-        </div>
-        <div class="form-group">
-            <label for="form-fullname" class="sr-only">Full name</label>
-            <input id="form-fullname" name="fullname" class="form-control" placeholder="First and last name eg. John Doe" required type="text" formControlName="fullname">
-            <span class="text-danger" *ngIf="!registerForm.controls['fullname'].valid && registerForm.controls['fullname'].touched">Please enter correct name</span>
-        </div>
-        <div class="form-group">
-            <label for="form-email" class="sr-only">Email</label>
-            <input id="form-email" name="email" class="form-control" placeholder="Email" required type="email" formControlName="email">
-            <span class="text-danger" *ngIf="!registerForm.controls['email'].valid && registerForm.controls['email'].touched">Please enter correct email</span>
-        </div>
-        <div class="form-group">
-            <label for="form-password" class="sr-only">Password</label>
-            <input id="form-password" name="password" class="form-control" placeholder="Password" required type="password" formControlName="password">
-            <span class="text-danger" *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">Please enter correct password</span>
-        </div>
+        <form [formGroup]="registerForm" #formRegister="ngForm" class="form-register" (ngSubmit)="register()">
+            <h2 class="form-register-heading">Register Form</h2>
+            <div class="form-group">
+                <label for="form-username" class="sr-only">Username</label>
+                <input id="form-username" name="username" class="form-control" placeholder="Username" required autofocus type="text" formControlName="username">
+                <span class="text-danger" *ngIf="!registerForm.controls['username'].valid && registerForm.controls['username'].touched">Please enter correct username</span>
+            </div>
+            <div class="form-group">
+                <label for="form-fullname" class="sr-only">Full name</label>
+                <input id="form-fullname" name="fullname" class="form-control" placeholder="First and last name eg. John Doe" required type="text"
+                    formControlName="fullname">
+                <span class="text-danger" *ngIf="!registerForm.controls['fullname'].valid && registerForm.controls['fullname'].touched">Please enter correct name</span>
+            </div>
+            <div class="form-group">
+                <label for="form-email" class="sr-only">Email</label>
+                <input id="form-email" name="email" class="form-control" placeholder="Email" required type="email" formControlName="email">
+                <span class="text-danger" *ngIf="!registerForm.controls['email'].valid && registerForm.controls['email'].touched">Please enter correct email</span>
+            </div>
+            <div class="form-group">
+                <label for="form-password" class="sr-only">Password</label>
+                <input id="form-password" name="password" class="form-control" placeholder="Password" required type="password" formControlName="password">
+                <span class="text-danger" *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">Please enter correct password</span>
+            </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register now</button>
-    </form>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register now</button>
+        </form>
     </div>
 </div>

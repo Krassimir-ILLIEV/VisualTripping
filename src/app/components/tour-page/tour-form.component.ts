@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Tour } from '../../../models/tour.model';
+import { TourPoint } from '../../../models/tour-point.model';
 import { ToursService } from '../../../services/tours.service';
+import { NotificationsService } from 'angular2-notifications';
 
 
 @Component({
@@ -140,7 +142,8 @@ export class TourFormComponent implements OnInit {
 
   constructor(private toursData: ToursService,
     private _route: ActivatedRoute,
-    private _router: Router) { }
+    private _router: Router,
+    private notificationsService: NotificationsService) { }
 
   ngOnInit() {
     this._route.params.subscribe(
@@ -148,20 +151,22 @@ export class TourFormComponent implements OnInit {
         let id = params['id'];
         if (params['id'] === '0') {
           this.tour = {  //new tour?
+            tourPoints: [],
+            comments: [],
+            pictures: [],
+            rating: 0,
             creator: '',
             title: '',
-            city: '',
-            country: '',
             description: '',
             price: 0,
             maxUser: 0,
-            endJoinDate: new Date(2016, 12, 10),
-            beginTourDate: new Date(2016, 12, 10),
-            endTourDate: new Date(2016, 12, 10),
-            isValid: false,
+            endJoinDate: new Date(),
+            beginTourDate: new Date(),
+            endTourDate: new Date(),
+            isValid: true,
             isDeleted: false,
-            usersInTour: ['']
-          }
+            usersInTour: []
+          };
         } else {
           this.getTour(id);
         };
@@ -187,10 +192,6 @@ export class TourFormComponent implements OnInit {
     this._router.navigate(['/tours']);
   }
 
-  onSave(event: any): void {
-    alert(JSON.stringify(this.tour)); //TODO
-  }
-
   addNext(): void {
     let point = {
       country: '',
@@ -200,5 +201,40 @@ export class TourFormComponent implements OnInit {
     };
 
     (this.tour as Tour).tourPoints.push(point);
+  }
+
+
+  onSave(event: any): void {
+    let tour = this.tour as Tour;
+    tour.tourPoints = tour.tourPoints.filter(tourPoint => tourPoint.city !== '');
+    alert(JSON.stringify(this.tour)); //TODO
+    if (tour.tourPoints.length <= 0) {
+      this.notificationsService.error(
+        'This tour must have at least one valid tour point.',
+        ''
+      );
+    }
+    let testingTour = {
+      tourPoints: [
+        {
+          city: 'Washington',
+          country: 'USA',
+          startDate: new Date('2017-11-28'),
+        }
+      ],
+      creator: 'Пешо',
+      title: 'На гости на Пешо!',
+      city: 'София',
+      country: 'България',
+      description: 'Познайте къде ще се ходи! На гости на Пешо, разбира се!',
+      price: 50.00,
+      maxUser: 20,
+      endJoinDate: new Date('2016-12-31'),//'2016-12-31 12:39:53.197Z',
+      beginTourDate: '2016-12-31 12:39:53.197Z',
+      endTourDate: '2016-12-31 12:39:53.197Z',
+      isValid: true,
+      isDeleted: false,
+      usersInTour: []
+    }
   }
 }
