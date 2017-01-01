@@ -1,17 +1,23 @@
 import { TourPoint } from './tour-point.model';
 
 export interface Tour {
-    id: number;
     tourPoints: TourPoint[];
-    totalPrice: number;
-    dateCreated: string;
-    createdBy: string;
-    participants: string[];
-    keywords: string[];
-    description: string;
-    comments: string[];
-    //isMovedToArchive: boolean;
-    pictures: string[];
-    rating: number;
+    comments: String[];
+    pictures: String[];
+    rating: Number;
+
+    creator: String;
+    title: { type: String, required: true };
+    //city: { type: String, required: true };
+    country: { type: String, required: true };
+    description: String;
+    price: Number;
+    maxUser: Number;
+    endJoinDate: Date;
+    beginTourDate: Date;
+    endTourDate: Date;
+    isValid: Boolean;
+    isDeleted: Boolean;
+    usersInTour: string[];
 };
 
