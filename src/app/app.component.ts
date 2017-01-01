@@ -1,5 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
-import { UserService } from './../services/user.service';
+import { Component } from '@angular/core';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -10,13 +9,5 @@ import 'rxjs/add/operator/map';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements DoCheck {
-  public isCollapsed: boolean = true;
-  isLogged;
-
-  constructor(private userService: UserService) { }
-
-  ngDoCheck() {
-    this.isLogged = this.userService.isLogged();
-  }
+export class AppComponent {
 }

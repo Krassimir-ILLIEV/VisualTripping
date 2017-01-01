@@ -1,12 +1,12 @@
 module.exports = function({ data }) {
     const validator = require('./../utils/validator');
     return {
-        userLogout(req, res) {
+        logout(req, res) {
             req.logout();
             req.session.destroy();
-            res.redirect("/home");
+            res.json({success: true, message: 'logout successful!'});
         },
-        tryToCreateUser(req, res) {
+        createUser(req, res) {
 
             console.log(req.body);
 

@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 import { LocalStorageService } from 'angular-2-local-storage';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService {
     private registerUrl = '/api/user/register';
     private loginUrl = 'api/user/login';
+    private logoutUrl = 'api/user/logout';
+    private userStorage: string = 'username';
     constructor(private http: Http,
         private localStorageService: LocalStorageService) { }
 
@@ -24,8 +21,21 @@ export class UserService {
     }
 
     isLogged() {
-        let user = this.localStorageService.get('username');
+        let user = this.localStorageService.get(this.userStorage);
 
         return user ? user : null;
+    }
+
+    logout() {
+        return this.http.get(this.logoutUrl)
+            .map((res: Response) => res.json())
+            .toPromise()
+            .then(res => {
+                if (res.success) {
+                    this.localStorageService.remove(this.userStorage);
+                }
+
+                return res.message;
+            });
     }
 }

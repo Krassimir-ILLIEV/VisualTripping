@@ -3,7 +3,7 @@ module.exports = function ({ app, data, express }) {
     const authController = require('./../controllers/auth-controller')({ data });
     const userRouter = new express.Router();
 
-    userRouter.post('/register', authController.tryToCreateUser)
+    userRouter.post('/register', authController.createUser)
         // .post('/login', (req, res) => {
         //     console.log(req.body);
         // });
@@ -11,6 +11,7 @@ module.exports = function ({ app, data, express }) {
             console.log('loged in!');
             res.json({ success: true, message: 'login successful' });
         })
+        .get('/logout', authController.logout)
         .get('/failed-login', (req, res) => {
             res.json({ success: false, message: 'Invalid username or password.' });
         });

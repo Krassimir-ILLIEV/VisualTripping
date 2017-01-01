@@ -16,6 +16,7 @@ import { TourPageModule } from './components/tour-page/tour-page.module';
 import { SliderComponent } from './components/slider/slider.component';
 import { CreateTourPageComponent } from './components/create-tour-page/create-tour-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 import { UserService } from './../services/user.service';
 
@@ -40,6 +41,7 @@ import { UserService } from './../services/user.service';
     SliderComponent,
     CreateTourPageComponent,
     ProfilePageComponent,
+    NavigationComponent,
 
     CollapseDirective
   ],
