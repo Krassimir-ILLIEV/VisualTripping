@@ -1,4 +1,3 @@
-// mongoose = require('mongoose');
 module.exports = function ({mongoose}) {
     const tourSchema = new mongoose.Schema({
         creator: String,
@@ -13,6 +12,7 @@ module.exports = function ({mongoose}) {
         endTourDate: Date,
         isValid: Boolean,
         isDeleted: Boolean,
+        comments: [],
         usersInTour: []
     });
 
