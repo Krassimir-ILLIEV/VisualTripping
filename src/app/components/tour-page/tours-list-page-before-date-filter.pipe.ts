@@ -9,7 +9,7 @@ export class TourFilterByBeforeDatePipe implements PipeTransform {
     transform(value: Tour[], filterBy: string): Tour[] {
         let filterByDate = filterBy ? new Date(filterBy) : null;
         return filterByDate ? value.filter((tour: Tour) => {
-             return new Date(tour.tourPoints[0].startDate) >= filterByDate;
+             return new Date(tour.tourPoints[0].startDate) < filterByDate;
         }) : value;
     }
 }
