@@ -9,8 +9,6 @@ export interface Tour {
 
     creator: String;
     title: { type: String, required: true };
-    //city: { type: String, required: true };
-    country: { type: String, required: true };
     description: String;
     price: Number;
     maxUser: Number;

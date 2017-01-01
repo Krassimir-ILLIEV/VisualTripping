@@ -2,8 +2,8 @@ module.exports = function ({mongoose}) {
     const tourSchema = new mongoose.Schema({
         creator: String,
         title: { type: String, required: true },
-        city: { type: String, required: true },
-        country: { type: String, required: true },
+        city: { type: String },
+        country: { type: String },
         description: String,
         price: Number,
         maxUser: Number,
@@ -13,7 +13,15 @@ module.exports = function ({mongoose}) {
         isValid: Boolean,
         isDeleted: Boolean,
         comments: [],
-        usersInTour: []
+        usersInTour: [],
+        tourPoints: [{
+            country: String,
+            city: String,
+            startDate: Date,
+            duration: Number
+        }],
+        pictures: [String],
+        rating: Number
     });
 
     tourSchema.virtual('getUserCount').get(function () {
