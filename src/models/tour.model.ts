@@ -1,6 +1,7 @@
 import { TourPoint } from './tour-point.model';
 
 export interface Tour {
+    _id: String;
     tourPoints: TourPoint[];
     comments: String[];
     pictures: String[];

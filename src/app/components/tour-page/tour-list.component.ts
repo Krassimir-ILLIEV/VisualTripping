@@ -8,12 +8,12 @@ import { Tour } from '../../../models/tour.model';
   <div class="well">
     <div class="row">
       <div class="col-xs-2 form-group">
-          <label for="sord">Sort by:</label>
+          <label for="sort">Sort by:</label>
           </div>
           <div class="col-xs-3 form-group">
           <select class="form-control" name="sort"
           [(ngModel)]="fieldToSort">
-          <option *ngFor="let f of fieldsToSort" [value]="f">{{f}}</option>
+          <option *ngFor="let f of fieldsToSort" [value]="f.val">{{f.display}}</option>
           </select>
       </div>
       <div class="col-xs-2 form-group">
@@ -28,7 +28,7 @@ import { Tour } from '../../../models/tour.model';
       
       <div class="col-xs-offset-2 col-xs-1">
         <div class="pull-right">
-          <span class="glyphicon glyphicon-plus-sign" [routerLink]="['/tour', '0']"></span>
+          <span class="glyphicon glyphicon-plus-sign" [routerLink]="['/tours', '0']"></span>
         </div>
       </div>
     </div>
@@ -49,22 +49,23 @@ import { Tour } from '../../../models/tour.model';
           <tr *ngFor="let tour of tours | tourFilterByPlace:listFilter.place 
           | tourFilterByDescription:listFilter.description
           | tourFilterByAfterDate:listFilter.after
-          | tourFilterByBeforeDate:listFilter.before">
+          | tourFilterByBeforeDate:listFilter.before
+          | tourSort:fieldToSort:orderToSort">
             <td class="hidden-xs">{{tour.description}}...</td>
-            <td>{{tour.createdBy}}</td>
+            <td>{{tour.creator}}</td>
             <td>
-              [tour.tourPoints.city]
+              {{tour.tourPoints[0].city}}
               <span class="hidden-sm hidden-md hidden-lg pull-right glyphicon glyphicon-pencil"
-                [routerLink]="['/tour', tour.id]">
+                [routerLink]="['/tours', tour._id]">
               </span>
             </td>
-            <td class="hidden-xs">[tour.tourPoints[0].from]</td>
-            <td class="hidden-xs">[days]</td>
-            <td class="hidden-xs">{{tour.totalPrice}}</td>
+            <td class="hidden-xs">{{tour.tourPoints[0].startDate | date}}</td>
+            <td class="hidden-xs">{{getDuration(tour)}}</td>
+            <td class="hidden-xs">{{tour.price}}</td>
             <td class="hidden-xs">
               {{tour.rating}}
               <span class="pull-right glyphicon glyphicon-pencil"
-                [routerLink]="['/tour', tour.id]">
+                [routerLink]="['/tours', tour._id]">
               </span>
             </td>
           </tr>
@@ -75,8 +76,13 @@ import { Tour } from '../../../models/tour.model';
   `
 })
 export class TourListComponent implements OnInit {
-  fieldsToSort = ["Creator", "Start Date", "Duration", "Price", "Rating"];
-  ordersToSort = ["Asc", "Desc"];
+  fieldToSort = '';
+  orderToSort = '';
+  fieldsToSort = [{ val: 'creator', display: 'Creator' },
+  { val: 'startDate', display: 'Start Date' },
+  { val: 'price', display: 'Price' },
+  { val: 'rating', display: 'Rating' }];
+  ordersToSort = ['Asc', 'Desc'];
   tours: Tour[] = [];
   @Input() listFilter: any = {};
 
@@ -88,4 +94,13 @@ export class TourListComponent implements OnInit {
         this.tours = data.tours;
       });
   }
+
+  private getDuration(tour: Tour) {
+    let lastIndex = tour.tourPoints.length - 1;
+    let lastDate = new Date(tour.tourPoints[lastIndex].startDate);
+    let firstDate = new Date(tour.tourPoints[0].startDate);
+    let millisecondsInADay = 86400000;
+    return (lastDate.valueOf() - firstDate.valueOf()) / millisecondsInADay + 1;
+  }
 }
+

@@ -7,6 +7,7 @@ import { TourPageComponent } from './tour-page.component';
 import { SearchTourComponent } from './search-tour.component';
 import { TourListComponent } from './tour-list.component';
 import { TourFormComponent } from './tour-form.component';
+import {TourSortPipe} from  './tours-list-page-sorting.pipe';
 import { TourFilterByDescriptionPipe } from './tours-list-page-description-filter.pipe';
 import { TourFilterByPlacePipe } from './tours-list-page-place-filter.pipe';
 import{TourFilterByBeforeDatePipe} from './tours-list-page-before-date-filter.pipe';
@@ -31,6 +32,7 @@ import { ToursService } from '../../../services/tours.service';
     SearchTourComponent,
     TourListComponent,
     TourFormComponent,
+    TourSortPipe,
     TourFilterByDescriptionPipe,
     TourFilterByPlacePipe,
     TourFilterByBeforeDatePipe,
