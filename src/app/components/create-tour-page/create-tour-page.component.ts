@@ -5,6 +5,7 @@ import { ToursService } from './../../../services/tours.service';
 @Component({
     template: `
     <button (click)="Post()">Post</button>
+    <button (click)="TestCommentingFunctionallity()">TestCommentingFunctionallity</button>
     `
 })
 export class CreateTourPageComponent {
@@ -32,6 +33,16 @@ export class CreateTourPageComponent {
             isValid: true,
             isDeleted: false,
             usersInTour: []
+        }).subscribe(res => console.log(res));
+    }
+
+    TestCommentingFunctionallity() {
+        this.toursService.publishComment({
+            tourId: '583d7719c92aca2ea4dc2a55',
+            comment: {
+                author: 'Pesho',
+                content: 'Pesho beshe tuk!'
+            }
         }).subscribe(res => console.log(res));
     }
 }

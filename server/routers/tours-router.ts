@@ -9,7 +9,8 @@ module.exports = function ({ app, data, express }) {
 
     toursRouter.get('/', tourController.getSearchResults)
         .post('/', publicateController.createTour)
-        .get('/:id', tourController.getTourById);
+        .get('/:id', tourController.getTourById)
+        .post('/:id/comments', tourController.addComment);
 
     app.use('/api/tours', toursRouter);
 };

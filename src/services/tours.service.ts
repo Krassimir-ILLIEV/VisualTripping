@@ -14,6 +14,7 @@ export class ToursService {
     private toursUrl = '/api/tours';
     private toursUrlById = '/api/tours/';
     private placesUrl = '/api/places';
+
     constructor(private http: Http) { }
 
     getAll() {
@@ -61,5 +62,9 @@ export class ToursService {
 
     publicateTour(Tour: any) {
         return this.http.post(this.toursUrl, Tour);
+    }
+
+    publishComment(params: any) {
+        return this.http.post(this.toursUrlById + params.tourId + '/comments', params);
     }
 };

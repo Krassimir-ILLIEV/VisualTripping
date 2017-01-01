@@ -36,11 +36,11 @@ module.exports = function ({ data }) {
                 .then(tour => {
                     return new Promise((resolve, reject) => {
                         if (tour.isUserExist(req.body.username)) {
-                            return reject("You are already added in tour");
+                            return reject('You are already added in tour');
                         }
 
                         if (tour.getUserCount >= tour.maxUser) {
-                            return reject("Max users for tour are reached");
+                            return reject('Max users for tour are reached');
                         }
 
                         data.getUserByUsername(req.body.username)
@@ -53,7 +53,7 @@ module.exports = function ({ data }) {
                             })
                             .catch(err => {
                                 console.log(err);
-                                return reject("User doent exist");
+                                return reject('User doent exist');
                             });
                     });
                 })
@@ -82,7 +82,7 @@ module.exports = function ({ data }) {
                         tourTitle: dataCollection.tour.headline,
                         tourCountry: dataCollection.tour.country,
                         tourCity: dataCollection.tour.city,
-                        isDeleted: "false"
+                        isDeleted: 'false'
                     };
 
                     console.log(dataCollection.user);
@@ -122,13 +122,13 @@ module.exports = function ({ data }) {
             search.isDeleted = isDeleted;
             if (req.query.city) {
                 const string = req.query.city;
-                city = new RegExp(["^", string, "$"].join(""), "i");
+                city = new RegExp(['^', string, '$'].join(''), 'i');
                 search.city = city;
             }
 
             if (req.query.country) {
                 const string = req.query.country;
-                country = new RegExp(["^", string, "$"].join(""), "i");
+                country = new RegExp(['^', string, '$'].join(''), 'i');
                 search.country = country;
             }
 
@@ -160,7 +160,16 @@ module.exports = function ({ data }) {
                 .catch(err => {
                     console.log(err);
                     res.status(404)
-                        .send("ERROR WHEN SEARCH");
+                        .send('ERROR WHEN SEARCH');
+                });
+        },
+        addComment(req, res) {
+            data.getTourById(req.params.id)
+                .then((tour) => {
+                    tour.comments.push(req.body.comment);
+                    data.updateTour(tour);
+                    
+                    res.json({ success: true, message: 'Your comment was published successfully' });
                 });
         }
     };
