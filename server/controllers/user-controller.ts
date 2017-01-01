@@ -9,6 +9,7 @@ module.exports = function({ data }) {
                             firstname: user.firstname,
                             lastname: user.lastname,
                             email: user.email,
+                            avatar: user.avatar,
                             isLogged: true,
                             userOfferTours: user.userOfferTours,
                             userBoughtTours: user.userBoughtTours

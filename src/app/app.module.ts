@@ -4,6 +4,7 @@ import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -28,6 +29,7 @@ import { UserService } from './../services/user.service';
     ReactiveFormsModule,
     HttpModule,
     TourPageModule,
+    SimpleNotificationsModule,
     LocalStorageModule.withConfig({
             prefix: 'app-root',
             storageType: 'localStorage'

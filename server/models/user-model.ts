@@ -7,6 +7,7 @@ module.exports = function ({mongoose}) {
         salt: { type: String, required: true },
         passHash: { type: String, required: true },
         email: { type: String },
+        avatar: { type: String },
         firstname: { type: String, validate: /[a-zA-Z]+/, required: true },
         lastname: { type: String, validate: /[a-zA-Z]+/, required: true },
         age: { type: Number, min: 0, max: 150 },

@@ -10,4 +10,9 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public options = {
+    position: ['bottom', 'right'],
+    timeOut: 5000,
+    lastOnBottom: true
+  };
 }

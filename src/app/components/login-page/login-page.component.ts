@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './../../../services/user.service';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
     selector: 'app-login-form',
@@ -12,7 +13,8 @@ export class LoginPageComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
         private userService: UserService,
-        private localStorageService: LocalStorageService) { }
+        private localStorageService: LocalStorageService,
+        private notificationsService: NotificationsService) { }
 
     ngOnInit() {
         this.user = this.fb.group({
@@ -35,14 +37,14 @@ export class LoginPageComponent implements OnInit {
     }
 
     login(): void {
-        console.log(this.user.value);
-        console.log('login');
-        //call the auth service to login the user
         this.userService.login(this.user.value)
             .subscribe(res => {
                 this.localStorageService.set('username', this.user.value.username);
-                console.log(this.localStorageService.get('username'));
-                console.log(res);
+
+                this.notificationsService.success(
+                    res.message,
+                    ''
+                );
             });
     }
 }

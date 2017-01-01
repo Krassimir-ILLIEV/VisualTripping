@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './../../../services/user.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 @Component({
@@ -9,7 +10,9 @@ import { UserService } from './../../../services/user.service';
 export class RegisterPageComponent implements OnInit {
     private registerForm: FormGroup;
 
-    constructor(private fb: FormBuilder, private userService: UserService) {
+    constructor(private fb: FormBuilder,
+        private userService: UserService,
+        private notificationsService: NotificationsService) {
 
     }
 
@@ -62,6 +65,12 @@ export class RegisterPageComponent implements OnInit {
             password
         };
         this.userService.register(user)
-            .subscribe(res => console.log(res));
+            .subscribe(res => {
+                console.log(res);
+                this.notificationsService.success(
+                    res.message,
+                    ''
+                );
+            });
     }
 }
