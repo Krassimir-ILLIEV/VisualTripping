@@ -13,11 +13,13 @@ export class UserService {
         private localStorageService: LocalStorageService) { }
 
     register(user: any) {
-        return this.http.post(this.registerUrl, user);
+        return this.http.post(this.registerUrl, user)
+            .map((res: Response) => res.json());
     }
 
     login(user: any) {
-        return this.http.post(this.loginUrl, user);
+        return this.http.post(this.loginUrl, user)
+            .map((res: Response) => res.json());
     }
 
     isLogged() {
