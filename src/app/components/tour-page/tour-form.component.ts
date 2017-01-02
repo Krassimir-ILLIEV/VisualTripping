@@ -8,7 +8,8 @@ import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'tour-form-container',
-  templateUrl: './tour-form.component.html'
+  templateUrl: './tour-form.component.html',
+  styleUrls: ['./tour-form.component.css']
 })
 export class TourFormComponent implements OnInit {
   /*

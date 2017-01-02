@@ -154,9 +154,13 @@ module.exports = function ({ data }) {
                 .catch(err => { res.status(400).json({ success: false, message: 'error' }); });
         },
         addComment(req, res) {
+            console.log(req.user);
+
             data.getTourById(req.body.tourId.id)
                 .then((tour) => {
-                    tour.comments.push(req.body.comment);
+                    let comment = req.body.comment;
+                    comment.userAvatar = req.user.avatar;
+                    tour.comments.push(comment);
 
                     return data.updateTour(tour);
                 })
