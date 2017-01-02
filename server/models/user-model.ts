@@ -15,9 +15,7 @@ module.exports = function ({mongoose}) {
         city: { type: String },
         userOfferTours: [{}],
         userBoughtTours: [{}],
-        roles: { type: [String], default: 'regular', enum: allRoles },
-        facebookId: { type: String },
-        facebookToken: { type: String }
+        roles: { type: [String], default: 'regular', enum: allRoles }
     });
 
     mongoose.model('user', userSchema);

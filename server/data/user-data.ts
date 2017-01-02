@@ -16,7 +16,8 @@ module.exports = function(models) {
                 lastname: userInfo.lastname,
                 age: userInfo.age,
                 country: userInfo.country,
-                city: userInfo.city
+                city: userInfo.city,
+                avatar: userInfo.avatar || defaultAvatar
             });
 
             return new Promise((resolve, reject) => {
