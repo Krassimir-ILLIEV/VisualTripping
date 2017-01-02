@@ -89,23 +89,23 @@
       </div>
     </div>
   </form>
-
   <app-publish-comment></app-publish-comment>
-
   <div class="row">
-    <h3>Comment section</h3>
-    <section class="comments">
-      <article *ngFor="let comment of tour.comments" class="comment">
-        <a class="comment-img" href="#non">
-          <img src="{{comment.userAvatar}}" alt="avatar" width="50" height="50">
-        </a>
-        <div class="comment-body">
-          <div class="text">
-            <p>{{comment.content}}</p>
+    <div class="col-xs-6">
+      <h3>Comment section</h3>
+      <section class="comments">
+        <article *ngFor="let comment of tour.comments" class="comment">
+          <a class="comment-img" href="#non">
+            <img src="{{comment.userAvatar}}" alt="avatar" width="50" height="50">
+          </a>
+          <div class="comment-body">
+            <div class="text">
+              <p>{{comment.content}}</p>
+            </div>
+            <p class="attribution">by <a href="#non">{{comment.author}}</a></p>
           </div>
-          <p class="attribution">by <a href="#non">{{comment.author}}</a></p>
-        </div>
-      </article>
-    </section>
+        </article>
+      </section>
+    </div>
   </div>
 </div>
