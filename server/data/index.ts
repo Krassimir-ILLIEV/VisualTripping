@@ -2,10 +2,10 @@ let mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 
-module.exports = function (connectionString) {
+module.exports = function ({connectionString}) {
     // Override mongoose Promise, because it is depricated
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb://localhost/VisualTripping');
+    mongoose.connect(connectionString);
     const User = require('../models/user-model.js')({ mongoose });
     const Tour = require('../models/tour-model.js')({ mongoose });
     // const Country = require('../models/country-model.js');
@@ -27,6 +27,6 @@ module.exports = function (connectionString) {
                     data[key] = dataModule[key];
                 });
         });
-console.log("data:"+JSON.stringify(data));
+
     return data;
 };

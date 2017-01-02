@@ -1,9 +1,10 @@
 import * as express from 'express';
+import { connectionString } from './config';
 // import * as cors from 'cors';
 // import { app } from './config/application';
 // const express = require('express');
-let connectionSting: 'mongodb://localhost/VisualTripping';
-const data = require('./data')(connectionSting);
+//let connectionString: 'mongodb://localhost/VisualTripping';
+const data = require('./data')({connectionString});
 const app = require('./config/application')({ express, data });
 
 // import { toursRouter } from './routers/tours-router';
