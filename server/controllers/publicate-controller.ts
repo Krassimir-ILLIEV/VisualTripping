@@ -19,91 +19,66 @@ module.exports = function ({ data }) {
             }
         },
         createTour(req, res) {
-            console.log(req.body);
-            let toursDetails = req.body;
-            // if (!req.user) {
-            //     return res.status(401)
-            //         .render('not-login');
-            // }
+            const fixDay = 1;
+            let endJoinDate = new Date(`${req.body.endJoinDate}`);
+            endJoinDate.setDate(endJoinDate.getDate() + fixDay);
+            req.body.endJoinDate = endJoinDate;
 
-            // const fixDay = 1;
-            // let endJoinDate = new Date(`${req.body.endJoinDate}`);
-            // endJoinDate.setDate(endJoinDate.getDate() + fixDay);
-            // req.body.endJoinDate = endJoinDate;
+            let beginTourDate = new Date(`${req.body.beginTourDate}`);
+            beginTourDate.setDate(beginTourDate.getDate() + fixDay);
+            req.body.beginTourDate = beginTourDate;
 
-            // let beginTourDate = new Date(`${req.body.beginTourDate}`);
-            // beginTourDate.setDate(beginTourDate.getDate() + fixDay);
-            // req.body.beginTourDate = beginTourDate;
+            let endTourDate = new Date(`${req.body.endTourDate}`);
+            endTourDate.setDate(endTourDate.getDate() + fixDay);
+            req.body.endTourDate = endTourDate;
 
-            // let endTourDate = new Date(`${req.body.endTourDate}`);
-            // endTourDate.setDate(endTourDate.getDate() + fixDay);
-            // req.body.endTourDate = endTourDate;
+            if (!validator.validateString(req.body.title, 1)) {
+                res.status(400).json({ success: false, message: 'Name of advertisement is required!' });
+            } else {
+                const user = req.user.username;
+                const tourDetails = req.body;
+                tourDetails.creator = user;
+                tourDetails.isDeleted = false;
+                tourDetails.isValid = true;
+                data.createTour(tourDetails)
+                    .then(tour => {
+                        const userTourData = {
+                            userOfferTours: {
+                                tourId: tour.getId,
+                                tourTitle: tour.headline,
+                                tourCountry: tour.country,
+                                tourCity: tour.city,
+                                isDeleted: 'false'
+                            }
+                        };
+                        return data.updateUserProperty(user, userTourData);
+                    })
+                    .then((tour) => {
+                        // io.sockets.emit('newTour', {
+                        //     headline: `${toursDetails.headline}`,
+                        //     country: `${toursDetails.country}`,
+                        //     city: `${toursDetails.city}`,
+                        //     date: `${toursDetails.beginTourDate}`,
+                        //     tourId: `${tour.tourId}`,
+                        //     creator: `${username}`
+                        // });
 
-            // // TODO: ajax! ==> TO UGLY!
-            // if (!validator.validateString(req.body.headline, 1)) {
-            //     res.status(400).send('Name of advertisement is required!');
-            // } else if (!validator.validateString(req.body.country, 1)) {
-            //     res.status(400).send('Country is required!');
-            // } else if (!validator.validateString(req.body.city, 1)) {
-            //     res.status(400).send('City is required!');
-            // } else if (!validator.validateString(req.user.username, 1)) {
-            //     res.status(400).send('You must be loged in to publish!');
-            // } else {
-            //     // TO DO: IT IS NOT CORRECT
-            //     const user = req.user.username;
-            //     const toursDetails = {
-            //         title: validator.escapeHtml(req.body.title),
-            //         country: validator.escapeHtml(req.body.country),
-            //         city: validator.escapeHtml(req.body.city),
-            //         endJoinDate: endJoinDate,
-            //         beginTourDate: beginTourDate,
-            //         endTourDate: endTourDate,
-            //         maxUser: req.body.maxUser,
-            //         price: req.body.price,
-            //         description: validator.escapeHtml(req.body.description),
-            //         creator: validator.escapeHtml(user),
-            //         isValid: 'true',
-            //         isDeleted: 'false'
-            //     };
-            data.createTour(toursDetails)
-                // .then(tour => {
-                //     const userTourData = {
-                //         userOfferTours: {
-                //             tourId: tour.getId,
-                //             tourTitle: tour.headline,
-                //             tourCountry: tour.country,
-                //             tourCity: tour.city,
-                //             isDeleted: 'false'
-                //         }
-                //     };
-                //     return data.updateUserProperty( userTourData);
-                // })
-                .then((tour) => {
-                    // io.sockets.emit('newTour', {
-                    //     headline: `${toursDetails.headline}`,
-                    //     country: `${toursDetails.country}`,
-                    //     city: `${toursDetails.city}`,
-                    //     date: `${toursDetails.beginTourDate}`,
-                    //     tourId: `${tour.tourId}`,
-                    //     creator: `${username}`
-                    // });
+                        // const user = {
+                        //     user: {
+                        //         isLogged: true,
+                        //         tourId: tour.tourId
+                        //     }
+                        // };
 
-                    // const user = {
-                    //     user: {
-                    //         isLogged: true,
-                    //         tourId: tour.tourId
-                    //     }
-                    // };
-
-                    res.status(200)
-                        .json({ message: 'success-publish' });
-                })
-                .catch(err => {
-                    console.log(`TOUR ${err} CANT BE CREATED`);
-                    res.status(404)
-                        .send(`TOUR ${err} CANT BE CREATED`);
-                });
-            // }
+                        res.status(200)
+                            .json({ message: 'success-publish' });
+                    })
+                    .catch(err => {
+                        console.log(`TOUR ${err} CANT BE CREATED`);
+                        res.status(404)
+                            .send(`TOUR ${err} CANT BE CREATED`);
+                    });
+            }
         },
         // UNDERCONSTRUCTION!!
         removeTour(req, res) {
