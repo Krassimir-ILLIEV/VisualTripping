@@ -6,14 +6,6 @@
 
 // const app = express();
 
-// app.disable('x-powered-by');
-
-// app.use(bodyParser.json());
-// app.use(compression());
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-// export { app };
-
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
