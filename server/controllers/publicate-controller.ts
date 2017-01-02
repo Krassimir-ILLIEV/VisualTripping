@@ -54,22 +54,6 @@ module.exports = function ({ data }) {
                         return data.updateUserProperty(user, userTourData);
                     })
                     .then((tour) => {
-                        // io.sockets.emit('newTour', {
-                        //     headline: `${toursDetails.headline}`,
-                        //     country: `${toursDetails.country}`,
-                        //     city: `${toursDetails.city}`,
-                        //     date: `${toursDetails.beginTourDate}`,
-                        //     tourId: `${tour.tourId}`,
-                        //     creator: `${username}`
-                        // });
-
-                        // const user = {
-                        //     user: {
-                        //         isLogged: true,
-                        //         tourId: tour.tourId
-                        //     }
-                        // };
-
                         res.status(200)
                             .json({ message: 'success-publish' });
                     })

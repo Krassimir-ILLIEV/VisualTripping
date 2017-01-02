@@ -2,10 +2,9 @@ let mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 
-module.exports = function (connectionString) {
-    // Override mongoose Promise, because it is depricated
+module.exports = function ({connectionString}) {
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb://localhost/VisualTripping');
+    mongoose.connect(connectionString);
     const User = require('../models/user-model.js')({ mongoose });
     const Tour = require('../models/tour-model.js')({ mongoose });
     // const Country = require('../models/country-model.js');
@@ -13,20 +12,18 @@ module.exports = function (connectionString) {
     const models = { User, Tour, /* Country,*/ City };
     const data = {};
 
-    // It finds all properties
-    // of the data models and hang them to 'data'
     fs.readdirSync('./dist/server/data')
         .filter(x => {
             return x.includes('-data') && !x.includes('.map');
         })
         .forEach(file => {
-            const dataModule = require(path.join(__dirname, file))(models); //use only models
+            const dataModule = require(path.join(__dirname, file))(models);
 
             Object.keys(dataModule)
                 .forEach(key => {
                     data[key] = dataModule[key];
                 });
         });
-console.log("data:"+JSON.stringify(data));
+
     return data;
 };

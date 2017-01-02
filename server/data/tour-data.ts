@@ -107,6 +107,13 @@ module.exports = function (models) {
                     return resolve(tours);
                 });
             });
+        },
+        getLastTours() {
+            return new Promise((resolve, reject) => {
+                Tour.find().sort({ _id: -1 }).limit(5)
+                    .then(tours => resolve(tours))
+                    .catch(err => reject(err));
+            });
         }
     };
 };

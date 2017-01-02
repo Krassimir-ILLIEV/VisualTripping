@@ -68,4 +68,9 @@ export class ToursService {
         return this.http.post(this.toursUrlById + params.tourId.id + '/comments', params)
             .map((res: Response) => res.json());
     }
+
+    lastTours() {
+        return this.http.get(this.toursUrl + '/last')
+            .map((res: Response) => res.json());
+    }
 };

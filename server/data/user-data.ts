@@ -1,6 +1,7 @@
 module.exports = function(models) {
     const { User } = models;
     const encrypt = require('./../utils/encrypt');
+    const defaultAvatar = 'http://4.bp.blogspot.com/-BQrZkt74Maw/Ts_F1SMewmI/AAAAAAAAAKQ/5wvGgJzl8A0/s1600/linux-mac-windows.png';
 
     return {
         createUser(userInfo) {
@@ -15,7 +16,8 @@ module.exports = function(models) {
                 lastname: userInfo.lastname,
                 age: userInfo.age,
                 country: userInfo.country,
-                city: userInfo.city
+                city: userInfo.city,
+                avatar: userInfo.avatar || defaultAvatar
             });
 
             return new Promise((resolve, reject) => {
@@ -41,8 +43,7 @@ module.exports = function(models) {
                 passHash: userInfo.passHash,
                 firstname: userInfo.firstname,
                 lastname: userInfo.lastname,
-                facebookId: userInfo.facebookId,
-                facebookToken: userInfo.facebookToken
+                avatar: userInfo.avatar || defaultAvatar
             });
 
             return new Promise((resolve, reject) => {

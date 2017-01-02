@@ -1,36 +1,18 @@
-// function tourController({ data })
 module.exports = function ({ data }) {
     return {
-        get(req, res) {
-            const isLogged = !!req.user;
-            const user = {
-                user: {
-                    isLogged: isLogged
-                }
-            };
-
-            res.status(200)
-                .render("search-page", user);
-        },
         getTourById(req, res) {
             data.getTourById(req.params.id)
                 .then(tour => {
-
-                    // const isLogged = !!req.user;
-                    // let isJoined = false;
-                    // if (isLogged) {
-                    //     isJoined = trip.isUserExist(req.user.username);
-                    // }
-
                     res.status(200)
                         .json({ tour });
                 })
                 .catch(err => {
                     console.log(`TOUR ${err} DOESNT EXIST`);
                     res.status(404)
-                        .send(`TOUR ${err} DOESNT EXIST`);
+                        .json({ success: false, message: `tour does not exist` });
                 });
         },
+        // TODO: Fix nested promises!
         postUserInTour(req, res) {
             data.getTourById(req.params.id)
                 .then(tour => {
@@ -90,14 +72,13 @@ module.exports = function ({ data }) {
 
                     return data.updateUser(dataCollection.user);
                 })
-                .then(model => {
-
+                .then(user => {
                     res.status(200)
-                        .render(model);
+                        .json({ success: true, message: `${user.username} joined tour successfully!` });
                 })
                 .catch(err => {
                     console.log(err);
-                    res.redirect(`/tours/${req.params.id}`);
+                    res.json({ success: false, message: 'Error: can not join tour!' });
                 });
         },
         getSearchResults(req, res) {
@@ -149,24 +130,37 @@ module.exports = function ({ data }) {
 
             data.getSearchResults(search, {}, { sort: { endJoinDate: +1 } })
                 .then(tours => {
-                    // const isLogged = !!req.user;
-                    // const user = {
-                    //     isLogged: isLogged
-                    // };
-                    console.log('HERE' + req.isAuthenticated());
                     res.status(200)
                         .json({ tours });
                 })
                 .catch(err => {
                     console.log(err);
                     res.status(404)
-                        .send('ERROR WHEN SEARCH');
+                        .json({ success: false, message: 'ERROR WHEN SEARCH' });
                 });
         },
+        getLastTours(req, res) {
+            data.getLastTours()
+                .then(topTours => {
+                    let tours = topTours.map(t => {
+                        return {
+                            title: t.title,
+                            url: t.pictures[0] || 'http://www.intrawallpaper.com/static/images/wallpaper-photos-17.jpg',
+                            id: t._id
+                        };
+                    });
+                    res.status(200).json({tours});
+                })
+                .catch(err => { res.status(400).json({ success: false, message: 'error' }); });
+        },
         addComment(req, res) {
+            console.log(req.user);
+
             data.getTourById(req.body.tourId.id)
                 .then((tour) => {
-                    tour.comments.push(req.body.comment);
+                    let comment = req.body.comment;
+                    comment.userAvatar = req.user.avatar;
+                    tour.comments.push(comment);
 
                     return data.updateTour(tour);
                 })
@@ -176,5 +170,3 @@ module.exports = function ({ data }) {
         }
     };
 };
-
-// export { tourController }
