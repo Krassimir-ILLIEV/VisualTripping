@@ -8,10 +8,14 @@
                 <span class="text-danger" *ngIf="!registerForm.controls['username'].valid && registerForm.controls['username'].touched">Please enter correct username</span>
             </div>
             <div class="form-group">
-                <label for="form-fullname" class="sr-only">Full name</label>
-                <input id="form-fullname" name="fullname" class="form-control" placeholder="First and last name eg. John Doe" required type="text"
-                    formControlName="fullname">
-                <span class="text-danger" *ngIf="!registerForm.controls['fullname'].valid && registerForm.controls['fullname'].touched">Please enter correct name</span>
+                <label for="form-firstname" class="sr-only">First name</label>
+                <input id="form-firstname" name="firstname" class="form-control" placeholder="eg. John" required type="text" formControlName="firstname">
+                <span class="text-danger" *ngIf="!registerForm.controls['firstname'].valid && registerForm.controls['firstname'].touched">Please enter correct name</span>
+            </div>
+            <div class="form-group">
+                <label for="form-lastname" class="sr-only">Full name</label>
+                <input id="form-lastname" name="lastname" class="form-control" placeholder="eg. Doe" required type="text" formControlName="lastname">
+                <span class="text-danger" *ngIf="!registerForm.controls['lastname'].valid && registerForm.controls['lastname'].touched">Please enter correct name</span>
             </div>
             <div class="form-group">
                 <label for="form-email" class="sr-only">Email</label>

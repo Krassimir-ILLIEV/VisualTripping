@@ -27,7 +27,15 @@ export class RegisterPageComponent implements OnInit {
                     Validators.pattern('[A-Za-z0-9]{4,}$')
                 ])
             ],
-            'fullname': ['',
+            'firstname': ['',
+                Validators.compose([
+                    Validators.required,
+                    Validators.minLength(5),
+                    Validators.maxLength(50),
+                    Validators.pattern('([^0-9]){5,}')
+                ])
+            ],
+            'lastname': ['',
                 Validators.compose([
                     Validators.required,
                     Validators.minLength(5),
@@ -54,15 +62,16 @@ export class RegisterPageComponent implements OnInit {
     }
 
     register() {
-        let fullname = this.registerForm.value.fullname.split(' ');
+        let firstname = this.registerForm.value.firstname;
+        let lastname = this.registerForm.value.lastname;
         let username = this.registerForm.value.username;
         let email = this.registerForm.value.email;
         let password = this.registerForm.value.password;
 
         let user = {
             username,
-            firstname: fullname[0],
-            lastname: fullname[1],
+            firstname: firstname,
+            lastname: lastname,
             email,
             password
         };
