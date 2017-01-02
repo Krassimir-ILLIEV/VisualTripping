@@ -7,14 +7,15 @@ import { TourPageComponent } from './components/tour-page/tour-page.component';
 import { CreateTourPageComponent } from './components/create-tour-page/create-tour-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { TourFormComponent } from './components/tour-page/tour-form.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
 
 const routes: Route[] = [
   { path: 'home', component: HomePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'tours', component: TourPageComponent },
-  { path: 'create', component: TourFormComponent },
-  { path: 'profile', component: ProfilePageComponent },
+  { path: 'create', component: CreateTourPageComponent, canActivate: [AuthenticationGuard] },
+  { path: 'profile', component: ProfilePageComponent, canActivate: [AuthenticationGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
 

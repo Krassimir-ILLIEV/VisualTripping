@@ -1,4 +1,4 @@
-module.exports = function ({ app, data, express }) {
+module.exports = function ({ app, data, express, authMiddleware }) {
     const passport = require('passport');
     const authController = require('./../controllers/auth-controller')({ data });
     const userController = require('./../controllers/user-controller')({ data });
@@ -12,7 +12,7 @@ module.exports = function ({ app, data, express }) {
         .get('/failed-login', (req, res) => {
             res.json({ success: false, message: 'Invalid username or password.' });
         })
-        .get('/profile', userController.getLoggedUserData)
+        .get('/profile', authMiddleware.isAuthenticated, userController.getLoggedUserData)
         .get('/user/:username', userController.getUserByUsername);
 
     app.use('/api/users', userRouter);
