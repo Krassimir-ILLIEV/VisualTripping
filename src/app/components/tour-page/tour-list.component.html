@@ -47,9 +47,6 @@
             <td>{{tour.creator}}</td>
             <td>
               {{tour.tourPoints[0].city}}
-              <span class="pull-right glyphicon glyphicon-pencil"
-                [routerLink]="['/tours', tour._id]">
-              </span>
             </td>
             <td >{{tour.tourPoints[0].startDate | date}}</td>
             <td >{{getDuration(tour)}}</td>
@@ -57,6 +54,10 @@
             <td >
               {{tour.rating}}
               <span class="pull-right glyphicon glyphicon-pencil"
+                [routerLink]="['/tours', tour._id]">
+              </span>
+              .
+              <span class="pull-right glyphicon glyphicon-comment"
                 [routerLink]="['/tours', tour._id]">
               </span>
             </td>
