@@ -65,6 +65,7 @@ export class ToursService {
     }
 
     publishComment(params: any) {
-        return this.http.post(this.toursUrlById + params.tourId + '/comments', params);
+        return this.http.post(this.toursUrlById + params.tourId.id + '/comments', params)
+            .map((res: Response) => res.json());
     }
 };

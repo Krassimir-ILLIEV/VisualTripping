@@ -164,11 +164,13 @@ module.exports = function ({ data }) {
                 });
         },
         addComment(req, res) {
-            data.getTourById(req.params.id)
+            data.getTourById(req.body.tourId.id)
                 .then((tour) => {
                     tour.comments.push(req.body.comment);
-                    data.updateTour(tour);
-                    
+
+                    return data.updateTour(tour);
+                })
+                .then(() => {
                     res.json({ success: true, message: 'Your comment was published successfully' });
                 });
         }

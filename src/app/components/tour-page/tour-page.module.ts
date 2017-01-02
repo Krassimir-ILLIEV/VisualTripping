@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { TourPageComponent } from './tour-page.component';
@@ -14,10 +14,13 @@ import{TourFilterByBeforeDatePipe} from './tours-list-page-before-date-filter.pi
 import{TourFilterByAfterDatePipe} from './tours-list-page-after-date-filter.pipe';
 import { ToursService } from '../../../services/tours.service';
 
+import { PublishCommentComponent } from './../publish-comment/publish-comment.component';
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'tours', component: TourPageComponent },
       {
@@ -32,6 +35,7 @@ import { ToursService } from '../../../services/tours.service';
     SearchTourComponent,
     TourListComponent,
     TourFormComponent,
+    PublishCommentComponent,
     TourSortPipe,
     TourFilterByDescriptionPipe,
     TourFilterByPlacePipe,
@@ -39,7 +43,8 @@ import { ToursService } from '../../../services/tours.service';
     TourFilterByAfterDatePipe
   ],
   providers: [
-    ToursService
+    ToursService,
+    FormBuilder
   ]
 })
 export class TourPageModule { }

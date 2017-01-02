@@ -70,6 +70,7 @@ export class TourFormComponent implements OnInit {
   }
 
   getPlaces(): void {
+
     this.toursData.getAllPlaces()
       .subscribe(places => {
         this.places = places.map(p => {
@@ -80,6 +81,12 @@ export class TourFormComponent implements OnInit {
         this.places.splice(0, 0, { country: 'None', name: '' }); // = data.tour;
         alert(JSON.stringify(this.places)); //TODO
       });
+
+    // this.toursData.getAllPlaces()
+    //   .subscribe(data => {
+    //     this.places.splice(0, 0, { country: 'None', city: '' }); // = data.tour;
+    //   });
+
   }
 
   navigateBack(event: any): void {

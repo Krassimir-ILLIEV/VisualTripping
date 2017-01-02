@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="col-xs-4 col-centered">
+        <form [formGroup]="publishCommentForm" #commentRegister="ngForm" class="form-comment" (ngSubmit)="publish()">
+            <h2 class="form-comment-heading">Publish your comment here</h2>
+            <div class="form-group">
+                <label for="form-content" class="sr-only">Username</label>
+                <input id="form-content" name="content" class="form-control" placeholder="Enter your comment" type="text" formControlName="content">
+                <span class="text-danger" *ngIf="!publishCommentForm.controls['content'].valid && publishCommentForm.controls['content'].touched">Please enter atleast 4 characters</span>
+            </div>
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Publish</button>
+        </form>
+    </div>
+</div>

@@ -20,7 +20,6 @@ export class CreateTourPageComponent {
                     startDate: new Date('2017-11-28'),
                 }
             ],
-            creator: 'Пешо',
             title: 'На гости на Пешо!',
             // city: 'София',
             // country: 'България',
@@ -30,8 +29,6 @@ export class CreateTourPageComponent {
             endJoinDate: new Date('2016-12-31'),//'2016-12-31 12:39:53.197Z',
             beginTourDate: '2016-12-31 12:39:53.197Z',
             endTourDate: '2016-12-31 12:39:53.197Z',
-            isValid: true,
-            isDeleted: false,
             usersInTour: []
         }).subscribe(res => console.log(res));
     }
