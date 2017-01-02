@@ -65,10 +65,10 @@ export class TourFormComponent implements OnInit {
   }
 
   getPlaces(): void {
-    this.toursData.getAllPlaces()
-      .subscribe(data => {
-        this.places.splice(0, 0, { country: 'None', city: '' }); // = data.tour;
-      });
+    // this.toursData.getAllPlaces()
+    //   .subscribe(data => {
+    //     this.places.splice(0, 0, { country: 'None', city: '' }); // = data.tour;
+    //   });
   }
 
   navigateBack(event: any): void {
