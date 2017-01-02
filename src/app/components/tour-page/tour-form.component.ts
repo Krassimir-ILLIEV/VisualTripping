@@ -63,30 +63,23 @@ export class TourFormComponent implements OnInit {
         this.tour = data.tour;
         (this.tour as Tour).tourPoints.map((p: any) => {
           p.cityCountry = p.city + '/' + p.country;
+          p.startDate = p.startDate.split('T')[0];
           return p;
         });
-
       });
   }
 
   getPlaces(): void {
-
     this.toursData.getAllPlaces()
       .subscribe(places => {
-        this.places = places.map(p => {
+        this.places = places;
+        this.places.splice(0, 0, { country: 'None', name: '' }); // = data.tour;
+        this.places.map(p => {
           p.cityCountry = p.name + '/' + p.country;
           delete p._id;
           return p;
         });
-        this.places.splice(0, 0, { country: 'None', name: '' }); // = data.tour;
-        alert(JSON.stringify(this.places)); //TODO
       });
-
-    // this.toursData.getAllPlaces()
-    //   .subscribe(data => {
-    //     this.places.splice(0, 0, { country: 'None', city: '' }); // = data.tour;
-    //   });
-
   }
 
   navigateBack(event: any): void {
@@ -95,8 +88,9 @@ export class TourFormComponent implements OnInit {
 
   addNext(): void {
     let point = {
-      country: '',
+      country: 'None',
       city: '',
+      cityCountry: '/None',
       startDate: new Date(),
       duration: 0
     };
@@ -108,7 +102,7 @@ export class TourFormComponent implements OnInit {
   onSave(event: any): void {
     let tour = this.tour as Tour;
     delete tour._id;
-    tour.tourPoints = tour.tourPoints.filter(tourPoint => tourPoint.city !== '');
+    tour.tourPoints = tour.tourPoints.filter(tourPoint => (tourPoint as any).cityCountry !== '/None');
     tour.tourPoints.map(tourPoint => {
       let a = (tourPoint as any).cityCountry.split('/');
       tourPoint.city = a[0];
@@ -116,7 +110,7 @@ export class TourFormComponent implements OnInit {
       delete (tourPoint as any).cityCountry;
       return tourPoint;
     });
-    alert(JSON.stringify(tour)); //TODO
+
     if (tour.tourPoints.length <= 0) {
       this.notificationsService.error(
         'This tour must have at least one valid tour point.',
@@ -125,6 +119,7 @@ export class TourFormComponent implements OnInit {
     }
     this.toursData.publicateTour(tour)
       .subscribe(res => console.log(res));
-    
+
+    this._router.navigate(['/tours']);
   }
 }
