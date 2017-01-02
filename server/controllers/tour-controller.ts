@@ -145,7 +145,7 @@ module.exports = function ({ data }) {
                     let tours = topTours.map(t => {
                         return {
                             title: t.title,
-                            url: t.pictures[0],
+                            url: t.pictures[0] || 'http://www.intrawallpaper.com/static/images/wallpaper-photos-17.jpg',
                             id: t._id
                         };
                     });
