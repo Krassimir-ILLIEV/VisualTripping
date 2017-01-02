@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToursService } from './../../../services/tours.service';
 
 @Component({
     templateUrl: './home-page.component.html',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomePageComponent implements OnInit {
     public images: any[];
 
-    constructor() {
+    constructor(private toursService: ToursService) {
         this.images = [];
     }
 
@@ -19,5 +20,12 @@ export class HomePageComponent implements OnInit {
             { 'title': 'third', 'id': 3, 'url': 'http://www.intrawallpaper.com/static/images/wallpaper-photos-17.jpg' },
             { 'title': 'fourth', 'id': 4, 'url': 'http://www.intrawallpaper.com/static/images/wallpaper-photos-17.jpg' },
         ];
+
+        this.toursService.lastTours()
+            .subscribe(res => {
+                if (res.tours.length === 5) {
+                    this.images = res.tours;
+                }
+            });
     }
 }

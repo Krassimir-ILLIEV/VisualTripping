@@ -9,6 +9,7 @@ module.exports = function ({ app, data, express }) {
 
     toursRouter.get('/', tourController.getSearchResults)
         .post('/', publicateController.createTour)
+        .get('/last', tourController.getLastTours)
         .get('/:id', tourController.getTourById)
         .post('/:id/comments', tourController.addComment);
 

@@ -26,6 +26,7 @@ export class CreateTourPageComponent {
             description: 'Познайте къде ще се ходи! На гости на Пешо, разбира се!',
             price: 50.00,
             maxUser: 20,
+            pictures: ['http://www.intrawallpaper.com/static/images/wallpaper-photos-17.jpg'],
             endJoinDate: new Date('2016-12-31'),//'2016-12-31 12:39:53.197Z',
             beginTourDate: '2016-12-31 12:39:53.197Z',
             endTourDate: '2016-12-31 12:39:53.197Z',
