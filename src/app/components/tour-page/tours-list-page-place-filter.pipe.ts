@@ -10,7 +10,7 @@ export class TourFilterByPlacePipe implements PipeTransform {
     transform(value: Tour[], filterBy: string): Tour[] {
         filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
         return filterBy ? value.filter((tour: Tour) => {
-            return !!tour.tourPoints.find(tourPoint => tourPoint.city === filterBy);
+            return !!tour.tourPoints.find(tourPoint => tourPoint.city.toLocaleLowerCase() === filterBy);
         }) : value;
 
         //     for (var tourPoint in tour.tourPoints) {

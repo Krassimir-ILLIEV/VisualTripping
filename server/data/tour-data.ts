@@ -96,7 +96,7 @@ module.exports = function (models) {
             });
         },
         getSearchResults(search, prop, sort) {
-            console.log('HERE!');
+            console.log('HERE!'+JSON.stringify(Tour));
             return new Promise((resolve, reject) => {
                 console.log("IT STARTTTTT");
                 Tour.find((err, tours) => {
