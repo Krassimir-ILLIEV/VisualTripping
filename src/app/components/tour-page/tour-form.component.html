@@ -1,12 +1,10 @@
 <div class="container-fluid well">
-
   <form id="edit-tour-form">
     <div class="row">
       <div class="col-xs-12 form-group">
         <label>Tour Info</label>
       </div>
     </div>
-
     <div class="row">
       <div class="col-sm-8 form-group">
         <label class="control-label" for="description">Description</label>
@@ -22,7 +20,6 @@
         />
       </div>
     </div>
-
     <div class="row">
       <label class="control-label">Tour Places</label>
       <div class="row" *ngFor="let tourPoint of tour.tourPoints; let i = index">
@@ -31,7 +28,6 @@
               <option *ngFor="let p of places" [value]="p.city">{{p.city + "(" + p.country+")"}}</option>
           </select>
         </div>
-
         <div class="col-md-2 col-lg-2 form-group">
           <input type="date" class="form-control" name="from-{{i}}" [(ngModel)]="tourPoint.from" />
         </div>
@@ -46,7 +42,6 @@
         </div>
       </div>
     </div>
-
     <!--
         <div class="col-md-6 col-lg-3 form-group"  [class.has-error]="!patientForm.errors.time.isValid">
           <label class="control-label" for="time">Time</label>
@@ -85,7 +80,6 @@
             </button>
         </div>
       </div>
-
       <div class="col-xs-offset-8 col-xs-2 form-group">
         <div class="pull-right">
           <button type="button" class="btn btn-success" (click)="onSave($event)">
@@ -93,8 +87,25 @@
             </button>
         </div>
       </div>
-
     </div>
   </form>
+
   <app-publish-comment></app-publish-comment>
+
+  <div class="row">
+    <h3>Comment section</h3>
+    <section class="comments">
+      <article *ngFor="let comment of tour.comments" class="comment">
+        <a class="comment-img" href="#non">
+          <img src="{{comment.userAvatar}}" alt="avatar" width="50" height="50">
+        </a>
+        <div class="comment-body">
+          <div class="text">
+            <p>{{comment.content}}</p>
+          </div>
+          <p class="attribution">by <a href="#non">{{comment.author}}</a></p>
+        </div>
+      </article>
+    </section>
+  </div>
 </div>
