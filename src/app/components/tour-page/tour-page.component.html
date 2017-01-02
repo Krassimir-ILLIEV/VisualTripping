@@ -1,0 +1,8 @@
+<div class="container-fluid">
+    <div class="row row-fluid">
+      <search-tour-container class="col-md-12 container-fluid" (onSearch)="onSearch($event)"></search-tour-container>
+     </div>
+     <div class="row row-fluid"> 
+      <tour-list-container class="col-md-12 container-fluid" [listFilter]='search_'></tour-list-container>
+    </div>
+  </div>
