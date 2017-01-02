@@ -1,4 +1,4 @@
-module.exports = function ({ app, data, express }) {
+module.exports = function ({ app, data, express, authMiddleware }) {
     const tourController = require('./../controllers/tour-controller')({ data });
     const cityController = require('./../controllers/city-controller')({ data });
     const publicateController = require('./../controllers/publicate-controller')({ data });
@@ -6,10 +6,10 @@ module.exports = function ({ app, data, express }) {
 
     toursRouter.get('/', tourController.getSearchResults)
         .get('/cities', cityController.getAllCitiesList)
-        .post('/', publicateController.createTour)
+        .post('/', authMiddleware.isAuthenticated, publicateController.createTour)
         .get('/last', tourController.getLastTours)
         .get('/:id', tourController.getTourById)
-        .post('/:id/comments', tourController.addComment);
+        .post('/:id/comments', authMiddleware.isAuthenticated, tourController.addComment);
 
     app.use('/api/tours', toursRouter);
 };

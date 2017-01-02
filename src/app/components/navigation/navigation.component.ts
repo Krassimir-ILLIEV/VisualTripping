@@ -1,4 +1,5 @@
 import { Component, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from './../../../services/user.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -11,6 +12,7 @@ export class NavigationComponent implements DoCheck {
     isLogged;
 
     constructor(private userService: UserService,
+        private router: Router,
         private notificationsService: NotificationsService) { }
 
     ngDoCheck() {
@@ -25,6 +27,7 @@ export class NavigationComponent implements DoCheck {
                         res.message,
                         ''
                     );
+                    this.router.navigate(['home']);
                 } else {
                     this.notificationsService.error(
                         res.message,

@@ -21,6 +21,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 
 import { UserService } from './../services/user.service';
 
+import { AuthenticationGuard } from './guards/authentication.guard';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { UserService } from './../services/user.service';
   ],
   providers: [
     FormBuilder,
-    UserService
+    UserService,
+    AuthenticationGuard
   ],
   bootstrap: [
     AppComponent
