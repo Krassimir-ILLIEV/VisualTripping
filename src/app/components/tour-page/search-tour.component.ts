@@ -3,7 +3,7 @@ import { ToursService } from '../../../services/tours.service';
 
 @Component({
   selector: 'search-tour-container',
-  templateUrl: 'search-tour.component.html'
+  templateUrl: './search-tour.component.html'
 })
 export class SearchTourComponent implements OnInit {
   search = {};
@@ -20,8 +20,16 @@ export class SearchTourComponent implements OnInit {
   constructor(private toursData: ToursService) { };
 
   ngOnInit(): void {
-    // this.toursDate.getAllPlaces()
-    // .then((places:any[]))
+    this.getPlaces();
+  }
+
+  getPlaces(): void {
+    this.toursData.getAllPlaces()
+      .subscribe(places => {
+        this.places = places;
+        this.places.splice(0, 0, { country: 'None', name: '' }); // = data.tour;
+        console.log("places:"+JSON.stringify(this.places));
+      });
   }
 }
 

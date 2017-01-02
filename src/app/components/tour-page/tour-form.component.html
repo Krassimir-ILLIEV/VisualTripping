@@ -13,12 +13,12 @@
         <input type="text" class="form-control" id="description" name="description" [(ngModel)]="tour.description" />
       </div>
       <div class="col-sm-2 form-group">
-        <label class="control-label" for="totalPrice">Total Price</label>
-        <input type="number" class="form-control" id="totalPrice" name="totalPrice" [(ngModel)]="tour.totalPrice" />
+        <label class="control-label" for="price">Total Price</label>
+        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="tour.price" />
       </div>
       <div class="col-sm-2 form-group">
-        <label class="control-label" for="maxParticipants">Max Participants</label>
-        <input type="number" class="form-control" id="maxParticipants" name="maxParticipants" [(ngModel)]="tour.maxParticipants"
+        <label class="control-label" for="maxUser">Max Participants</label>
+        <input type="number" class="form-control" id="maxUser" name="maxUser" [(ngModel)]="tour.maxUser"
         />
       </div>
     </div>
@@ -27,8 +27,8 @@
       <label class="control-label">Tour Places</label>
       <div class="row" *ngFor="let tourPoint of tour.tourPoints; let i = index">
         <div class="col-md-4 col-lg-3 form-group">
-          <select class="form-control" name="place-{{i}}" [(ngModel)]="tourPoint.city">
-              <option *ngFor="let p of places" [value]="p.city">{{p.city + "(" + p.country+")"}}</option>
+          <select class="form-control" name="place-{{i}}" [(ngModel)]="tourPoint.cityCountry">
+              <option *ngFor="let p of places" [value]="p.cityCountry">{{p.name + "(" + p.country+")"}}</option>
           </select>
         </div>
 

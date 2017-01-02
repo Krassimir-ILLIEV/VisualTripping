@@ -9,8 +9,8 @@ module.exports = function (connectionString) {
     const User = require('../models/user-model.js')({ mongoose });
     const Tour = require('../models/tour-model.js')({ mongoose });
     // const Country = require('../models/country-model.js');
-    // const City = require('../models/city-model.js');
-    const models = { User, Tour, /* Country, City*/ };
+    const City = require('../models/city-model.js')({ mongoose });
+    const models = { User, Tour, /* Country,*/ City };
     const data = {};
 
     // It finds all properties
@@ -27,6 +27,6 @@ module.exports = function (connectionString) {
                     data[key] = dataModule[key];
                 });
         });
-
+console.log("data:"+JSON.stringify(data));
     return data;
 };

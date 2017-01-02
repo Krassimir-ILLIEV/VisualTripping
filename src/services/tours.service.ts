@@ -13,7 +13,7 @@ import { Tour } from '../models/tour.model';
 export class ToursService {
     private toursUrl = '/api/tours';
     private toursUrlById = '/api/tours/';
-    private placesUrl = '/api/places';
+    private placesUrl = '/api/tours/cities';
 
     constructor(private http: Http) { }
 

@@ -21,8 +21,8 @@ export class CreateTourPageComponent {
                 }
             ],
             title: 'На гости на Пешо!',
-            city: 'София',
-            country: 'България',
+            // city: 'София',
+            // country: 'България',
             description: 'Познайте къде ще се ходи! На гости на Пешо, разбира се!',
             price: 50.00,
             maxUser: 20,
