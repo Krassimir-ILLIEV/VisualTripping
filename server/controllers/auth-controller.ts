@@ -24,7 +24,8 @@ module.exports = function ({ data }) {
                     email: validator.escapeHtml(req.body.email),
                     password: validator.escapeHtml(req.body.password),
                     firstname: validator.escapeHtml(req.body.firstname),
-                    lastname: validator.escapeHtml(req.body.lastname)
+                    lastname: validator.escapeHtml(req.body.lastname),
+                    avatar: req.body.avatar
                 };
 
                 data.createUser(user)
