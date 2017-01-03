@@ -1,4 +1,8 @@
-module.exports = function ({ app, data, express, authMiddleware }) {
+// import { Router } from 'express';
+// let connectionSting: 'mongodb://localhost/VisualTripping';
+// const data = require('./../data')(connectionSting);
+
+module.exports = function ({ app, data, express }) {
     const tourController = require('./../controllers/tour-controller')({ data });
     const cityController = require('./../controllers/city-controller')({ data });
     const publicateController = require('./../controllers/publicate-controller')({ data });
@@ -6,10 +10,11 @@ module.exports = function ({ app, data, express, authMiddleware }) {
 
     toursRouter.get('/', tourController.getSearchResults)
         .get('/cities', cityController.getAllCitiesList)
-        .post('/', authMiddleware.isAuthenticated, publicateController.createTour)
+        .post('/', publicateController.createTour)
         .get('/last', tourController.getLastTours)
         .get('/:id', tourController.getTourById)
-        .post('/:id/comments', authMiddleware.isAuthenticated, tourController.addComment);
+        .post('/:id/comments', tourController.addComment)
+        .post('/join', tourController.joinTo);
 
     app.use('/api/tours', toursRouter);
 };

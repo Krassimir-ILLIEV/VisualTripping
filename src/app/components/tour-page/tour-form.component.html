@@ -1,116 +1,97 @@
 <div class="container-fluid well">
-<div class="col-sm-12 col-centered">
-    <form id="edit-tour-form">
-        <div class="row">
-            <div class="col-sm-4 form-group">
-                <label><h3>Tour Info</h3></label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 form-group">
-                <label class="control-label" for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" [(ngModel)]="tour.title" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 form-group">
-                <label class="control-label" for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="tour.description" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 col-lg-2 form-group">
-                <label class="control-label" for="description">End Join Date</label>
-                <input type="date" class="form-control" name="endDate}" [(ngModel)]="tour.endJoinDate" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-4 form-group">
-                <label class="control-label" for="price">Total Price</label>
-                <input type="number" class="form-control" id="price" name="price" [(ngModel)]="tour.price" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 form-group">
-                <label class="control-label" for="maxUser">Max Participants</label>
-                <input type="number" class="form-control" id="maxUser" name="maxUser" [(ngModel)]="tour.maxUser" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 form-group">
-                <label class="control-label" for="rating">Total Price</label>
-                <input type="number" class="form-control" id="rating" name="rating" [(ngModel)]="tour.rating" />
-            </div>
-
-        </div>
-        <div class="row">
-            <label class="control-label"><h4>Tour Places</h4></label>
+    <div class="col-sm-8 col-centered">
+        <form id="edit-tour-form">
             <div class="row">
-                <div class="col-sm-2 col-lg-3 form-group">
-                    <label class="control-label" for="city">City</label>
-                </div>
-                <div class="col-sm-4 col-lg-3 form-group">
-                    <label class="control-label" for="date">Date</label>
-                </div>
-
-            </div>
-            <div class="row" *ngFor="let tourPoint of tour.tourPoints; let i = index">
-                <div class="col-sm-4 col-lg-3 form-group">
-                    <select class="form-control" name="place-{{i}}" [(ngModel)]="tourPoint.cityCountry">
-              <option *ngFor="let p of places" [value]="p.cityCountry">{{p.name + "(" + p.country+")"}}</option>
-          </select>
-                </div>
-                <div class="col-sm-4 col-lg-3 form-group">
-                    <input type="date" class="form-control" name="startDate-{{i}}" [(ngModel)]="tourPoint.startDate" />
+                <div class="col-sm-4 form-group">
+                    <label><h3>Tour Info</h3></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4 form-group">
-                    <div>
-                        <button type="button" class="btn btn-primary" (click)="addNext()">
+                    <label class="control-label" for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="tour.title" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" [(ngModel)]="tour.description" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label class="control-label" for="end">End Join Date</label>
+                    <input type="date" class="form-control" name="endDate}" [(ngModel)]="tour.endJoinDate" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label class="control-label" for="price">Total Price</label>
+                    <input type="number" class="form-control" id="price" name="price" [(ngModel)]="tour.price" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label class="control-label" for="maxUser">Max Participants</label>
+                    <input type="number" class="form-control" id="maxUser" name="maxUser" [(ngModel)]="tour.maxUser" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label class="control-label" for="rating">Rating</label>
+                    <input type="number" class="form-control" id="rating" name="rating" [(ngModel)]="tour.rating" />
+                </div>
+
+            </div>
+            <div class="row">
+                <label class="control-label"><h4>Tour Places</h4></label>
+                <div class="row">
+                    <div class="col-sm-4 col-lg-3 form-group">
+                        <label class="control-label" for="city">City</label>
+                    </div>
+                    <div class="col-sm-4 col-lg-3 form-group">
+                        <label class="control-label" for="date">Date</label>
+                    </div>
+
+                </div>
+                <div class="row" *ngFor="let tourPoint of tour.tourPoints; let i = index">
+                    <div class="col-sm-4 col-lg-3 form-group">
+                        <select class="form-control" name="place-{{i}}" [(ngModel)]="tourPoint.cityCountry">
+              <option *ngFor="let p of places" [value]="p.cityCountry">{{p.name + "(" + p.country+")"}}</option>
+          </select>
+                    </div>
+                    <div class="col-sm-4 col-lg-3 form-group">
+                        <input type="date" class="form-control" name="startDate-{{i}}" [(ngModel)]="tourPoint.startDate" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <div>
+                            <button type="button" class="btn btn-primary" (click)="addNext()">
               Add next...
             </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-4 form-group">
-                <div>
-                    <button type="button" class="btn btn-primary" (click)="navigateBack($event)">
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <div>
+                        <button type="button" class="btn btn-primary" (click)="navigateBack($event)">
               Back
             </button>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-offset-8 col-xs-2 form-group">
-                <div class="pull-left">
-                    <button type="button" class="btn btn-success" (click)="onSave($event)">
+                <div class="col-xs-2 form-group">
+                   
+                        <button type="button" class="btn btn-success" (click)="onSave($event)">
               Save
             </button>
+                   
                 </div>
             </div>
-        </div>
-    </form>
-    </div>
-    <app-publish-comment></app-publish-comment>
-    <div class="row">
-        <div class="col-sm-4">
-            <h3>Comment section</h3>
-            <section class="comments">
-                <article *ngFor="let comment of tour.comments" class="comment">
-                    <a class="comment-img" href="#non">
-                        <img src="{{comment.userAvatar}}" alt="avatar" width="50" height="50">
-                    </a>
-                    <div class="comment-body">
-                        <div class="text">
-                            <p>{{comment.content}}</p>
-                        </div>
-                        <p class="attribution">by <a routerLink="/user/{{comment.author}}">{{comment.author}}</a></p>
-                    </div>
-                </article>
-            </section>
-        </div>
+        </form>
     </div>
 </div>

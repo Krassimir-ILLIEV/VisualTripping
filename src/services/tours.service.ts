@@ -14,6 +14,7 @@ export class ToursService {
     private toursUrl = '/api/tours';
     private toursUrlById = '/api/tours/';
     private placesUrl = '/api/tours/cities';
+    private joinUrl = '/api/tours/join';
 
     constructor(private http: Http) { }
 
@@ -67,6 +68,12 @@ export class ToursService {
     publishComment(params: any) {
         return this.http.post(this.toursUrlById + params.tourId.id + '/comments', params)
             .map((res: Response) => res.json());
+    }
+
+    joinTo(tourId: String, user: string, toJoin) {
+       // console.log(tourId + '/' + user);
+        return this.http.post(this.joinUrl, { tourId, user, toJoin })
+         .map((res: Response) => res.json());
     }
 
     lastTours() {

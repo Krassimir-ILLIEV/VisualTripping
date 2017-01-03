@@ -8,6 +8,7 @@ import { SearchTourComponent } from './search-tour.component';
 import { TourListComponent } from './tour-list.component';
 import { TourFormComponent } from './tour-form.component';
 import { TourDetailsComponent } from './tour-details.component';
+import { TourJoinComponent } from './tour-join.component';
 import { TourSortPipe } from './tours-list-page-sorting.pipe';
 import { TourFilterByDescriptionPipe } from './tours-list-page-description-filter.pipe';
 import { TourFilterByPlacePipe } from './tours-list-page-place-filter.pipe';
@@ -25,7 +26,8 @@ import { PublishCommentComponent } from './../publish-comment/publish-comment.co
     RouterModule.forChild([
       { path: 'tours', component: TourPageComponent },
       { path: 'tours/:id', component: TourFormComponent },
-      { path: 'details/:id', component: TourDetailsComponent }
+      { path: 'details/:id', component: TourDetailsComponent },
+      { path: 'join/:id', component: TourJoinComponent }
     ])
   ],
   declarations: [
@@ -34,6 +36,7 @@ import { PublishCommentComponent } from './../publish-comment/publish-comment.co
     TourListComponent,
     TourFormComponent,
     TourDetailsComponent,
+    TourJoinComponent,
     PublishCommentComponent,
     TourSortPipe,
     TourFilterByDescriptionPipe,

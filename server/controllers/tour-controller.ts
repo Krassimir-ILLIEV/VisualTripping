@@ -61,7 +61,7 @@ module.exports = function ({ data }) {
                 .then(dataCollection => {
                     const userTourData = {
                         tourId: dataCollection.tour.getId,
-                        tourTitle: dataCollection.tour.title,
+                        tourTitle: dataCollection.tour.headline,
                         tourCountry: dataCollection.tour.country,
                         tourCity: dataCollection.tour.city,
                         isDeleted: 'false'
@@ -149,7 +149,7 @@ module.exports = function ({ data }) {
                             id: t._id
                         };
                     });
-                    res.status(200).json({tours});
+                    res.status(200).json({ tours });
                 })
                 .catch(err => { res.status(400).json({ success: false, message: 'error' }); });
         },
@@ -167,6 +167,27 @@ module.exports = function ({ data }) {
                 .then(() => {
                     res.json({ success: true, message: 'Your comment was published successfully' });
                 });
+        },
+        joinTo(req, res) {
+            // console.log('--------------user: '+req.body.tourId+'...'+req.body.user);
+            data.getTourById(req.body.tourId)
+                .then((tour) => {
+                    let user = req.body.user;
+                    let toJoin = req.body.toJoin;
+                    if (!toJoin) {
+                        let i = tour.usersInTour.indexOf(user);
+                        if (i > -1) {
+                            tour.usersInTour.splice(i, 1);
+                        }
+                    } else {
+                        tour.usersInTour.push(user);
+                    }
+                    return data.updateTour(tour);
+                })
+                .then(() => {
+                    res.json({ success: true, message: 'Your joined the tour successfully' });
+                });
         }
+
     };
 };

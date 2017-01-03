@@ -1,0 +1,34 @@
+<div class="container-fluid well col-xs-4">
+  <form id="edit-tour-form">
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <label>Join to the Tour </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 form-group">
+        <input type="checkbox" name="isActive"  [(ngModel)]="toJoin"> Join Me
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-2 form-group">
+        <div>
+          <button type="button" class="btn btn-primary" (click)="navigateBack($event)">
+              Back
+            </button>
+        </div>
+      </div>
+      <div class="col-xs-offset-8 col-xs-2 form-group">
+        <div class="pull-right">
+          <button type="button" class="btn btn-success" (click)="joinTo()">
+              Save
+            </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+</div>

@@ -2,34 +2,34 @@
   <div class="row">
     <div class="col-xs-12">
       <span class="col-xs-1 glyphicon glyphicon-search"></span>
-      <p class="col-xs-9">Search tour</p>
+      <p class="control-label" class="col-xs-9">Search tour</p>
       <!--<span class="pull-right glyphicon glyphicon-collapse-down" data-toggle="collapse"
           data-target="#search-form">
         </span>-->
     </div>
     <form id="search-form">
-      <div class="row form-group">
+      <div class="row row-fluid form-group">
         <div class="col-xs-2 form-group">
-          <label for="after">Start Date After</label>
+          <label class="control-label" for="after">Start Date After</label>
         </div>
         <div class="col-xs-2 form-group" style="min-width: 200px">
           <input type="date" class="form-control" id="after" name="after" [(ngModel)]="search.after" />
         </div>
         <div class="col-xs-2 form-group">
-            <label for="before">Start Date Before</label>
+            <label class="control-label" for="before">Start Date Before</label>
         </div>
         <div class="col-xs-2 form-group" style="min-width: 200px">
           <input type="date" class="form-control" id="before" name="before" [(ngModel)]="search.before" />
         </div>
       </div>
 <div class="col-xs-12 form-group">
-  <label for="place">Place To Visit</label>
+  <label class="control-label" for="place">Place To Visit</label>
   <select class="form-control" name="place-{{i}}" [(ngModel)]="search.place">
               <option *ngFor="let p of places" [value]="p.name">{{p.name + "(" + p.country+")"}}</option>
           </select>
 </div>
 <div class="col-xs-12 form-group">
-  <label for="keyWord">Description Includes:</label>
+  <label class="control-label" for="keyWord">Description Includes:</label>
   <input type="text" class="form-control" id="keyWord" name="keyWord" [(ngModel)]="search.description" />
 </div>
 <div class="col-xs-offset-10 col-xs-2 form-group">
