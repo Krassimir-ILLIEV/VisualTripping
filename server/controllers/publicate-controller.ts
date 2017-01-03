@@ -19,6 +19,7 @@ module.exports = function ({ data }) {
             }
         },
         createTour(req, res) {
+            console.log('new Tour');
             const fixDay = 1;
             let endJoinDate = new Date(`${req.body.endJoinDate}`);
             endJoinDate.setDate(endJoinDate.getDate() + fixDay);

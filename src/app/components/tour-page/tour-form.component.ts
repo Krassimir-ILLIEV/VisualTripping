@@ -12,14 +12,6 @@ import { NotificationsService } from 'angular2-notifications';
   styleUrls: ['./tour-form.component.css']
 })
 export class TourFormComponent implements OnInit {
-  /*
-@Input() specialties: Array<string>;
-@Input() doctors: Array<string>;
-@Input() patientForm: PatientFormState;
-@Input() onSave: (patient: Patient) => void;
-@Input() navigateBack: (event: any) => void;
-@Input() onChange: (event: any) => void;
-*/
   tour = {};
   place = '';
   places = [];
@@ -122,9 +114,9 @@ export class TourFormComponent implements OnInit {
     tour.pictures = [];
     for (let tourPoint of tour.tourPoints) {
       let place = this.places.filter(p => p.name === tourPoint.city && p.country === tourPoint.country);
-      console.log('place-------------' + place);
-      if (place && place.length > 0 && place[0].cityUrl && place[0].cityUrl !== '') {
-        tour.pictures.push(place[0].cityUrl);
+      //console.log('place-------------' + place);
+      if (place && place.length > 0 && place[0].pictureUrl && place[0].pictureUrl !== '') {
+        tour.pictures.push(place[0].pictureUrl);
       }
     }
     this.toursData.publicateTour(tour)
