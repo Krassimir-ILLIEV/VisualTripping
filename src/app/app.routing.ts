@@ -9,6 +9,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { TourFormComponent } from './components/tour-page/tour-form.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { PublicProfilePageComponent } from './components/public-profile-page/public-profile-page.component';
+import { ProfileEditPageComponent } from './components/profile-edit-page/profile-edit-page.component';
 
 const routes: Route[] = [
   { path: 'home', component: HomePageComponent },
@@ -17,6 +18,7 @@ const routes: Route[] = [
   { path: 'tours', component: TourPageComponent },
   { path: 'create', component: TourFormComponent, canActivate: [AuthenticationGuard] },
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthenticationGuard] },
+  { path: 'profile/edit', component: ProfileEditPageComponent, canActivate: [AuthenticationGuard] },
   { path: 'user/:username', component: PublicProfilePageComponent, canActivate: [AuthenticationGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
