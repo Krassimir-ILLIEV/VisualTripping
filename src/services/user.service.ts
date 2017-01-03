@@ -54,7 +54,7 @@ export class UserService {
     }
 
     updateUserInfo(userToUpdate) {
-        return this.http.post(this.usersUrl + '/profile/', userToUpdate)
+        return this.http.post(this.usersUrl + '/profile', userToUpdate)
             .map((res: Response) => res.json());
     }
 }

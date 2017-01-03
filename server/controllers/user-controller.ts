@@ -60,7 +60,7 @@ module.exports = function ({ data }) {
                 .then(user => {
                     console.log(`USER ${user.username} HAS BEEN SUCCESFULLY UPDATED!`);
 
-                    res.status(301).json({ success: true, message: 'profile updated successfully' });
+                    res.status(200).json({ success: true, message: 'profile updated successfully' });
                 })
                 .catch(err => {
                     console.log(`UPDATE FAILED! ${req.user.username} :${err}`);

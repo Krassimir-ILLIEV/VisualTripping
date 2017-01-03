@@ -16,14 +16,14 @@ export class ProfileEditPageComponent implements OnInit {
         private userService: UserService,
         private notificationsService: NotificationsService,
         private router: Router) {
-            this.user = {
-                firstname: '',
-                lastname: '',
-                email: '',
-                avatar: ''
-            };
+        this.user = {
+            firstname: '',
+            lastname: '',
+            email: '',
+            avatar: ''
+        };
 
-            this.userAvatar = '';
+        this.userAvatar = '';
     }
 
     ngOnInit() {
@@ -50,8 +50,8 @@ export class ProfileEditPageComponent implements OnInit {
             ],
             'avatar': ['',
                 Validators.compose([
-                    Validators.minLength(1),
-                    Validators.pattern('([jpg|png|gif|bmp]){1,}')
+                    Validators.minLength(1)
+                    //Validators.pattern('([jpg|png|gif|bmp]){1,}')
                 ])
             ]
         });
@@ -71,7 +71,21 @@ export class ProfileEditPageComponent implements OnInit {
             avatar: this.editForm.value.avatar
         };
 
-        this.userService.updateUserInfo(updatedUser);
+        this.userService.updateUserInfo(updatedUser)
+            .subscribe(res => {
+                if (res.success) {
+                    this.notificationsService.success(
+                        res.message,
+                        ''
+                    );
+                    this.router.navigate(['./profile']);
+                } else {
+                    this.notificationsService.error(
+                        res.message,
+                        ''
+                    );
+                }
+            });
     }
 
     avatarChange(value: string) {
