@@ -13,6 +13,7 @@ module.exports = function ({ app, data, express, authMiddleware }) {
             res.json({ success: false, message: 'Invalid username or password.' });
         })
         .get('/profile', authMiddleware.isAuthenticated, userController.getLoggedUserData)
+        .post('/profile', authMiddleware.isAuthenticated, userController.updateUserProfile)
         .get('/user/:username', authMiddleware.isAuthenticated, userController.getUserByUsername);
 
     app.use('/api/users', userRouter);

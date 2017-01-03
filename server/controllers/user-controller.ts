@@ -53,6 +53,7 @@ module.exports = function ({ data }) {
                     user.email = req.body.email || user.email;
                     user.city = req.body.city || user.city;
                     user.country = req.body.country || user.country;
+                    user.avatar =  req.body.avatar || user.avatar;
 
                     return data.updateUser(user);
                 })
