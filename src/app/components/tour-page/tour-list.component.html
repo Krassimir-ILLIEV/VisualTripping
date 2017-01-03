@@ -1,69 +1,66 @@
 <div class="well">
-    <div class="row">
-      <div class="col-xs-2 form-group">
-          <label for="sort">Sort by:</label>
-          </div>
-          <div class="col-xs-3 form-group">
-          <select class="form-control" name="sort"
-          [(ngModel)]="fieldToSort">
+  <div class="row">
+    <div class="col-xs-2 form-group">
+      <label for="sort">Sort by:</label>
+    </div>
+    <div class="col-xs-3 form-group">
+      <select class="form-control" name="sort" [(ngModel)]="fieldToSort">
           <option *ngFor="let f of fieldsToSort" [value]="f.val">{{f.display}}</option>
           </select>
-      </div>
-      <div class="col-xs-2 form-group">
-          <label for="order">Set order:</label>
-          </div>
-          <div class="col-xs-2 form-group">
-          <select class="form-control" name="order"
-          [(ngModel)]="orderToSort">
+    </div>
+    <div class="col-xs-2 form-group">
+      <label for="order">Set order:</label>
+    </div>
+    <div class="col-xs-2 form-group">
+      <select class="form-control" name="order" [(ngModel)]="orderToSort">
           <option *ngFor="let f of ordersToSort" [value]="f">{{f}}</option>
           </select>
-      </div>      
-      <div class="col-xs-offset-2 col-xs-1">
-        <div class="pull-right">
-          <span class="glyphicon glyphicon-plus-sign" [routerLink]="['/tours', '0']"></span>
-        </div>
+    </div>
+    <div class="col-xs-offset-2 col-xs-1">
+      <div class="pull-right">
+        <span class="glyphicon glyphicon-plus-sign" [routerLink]="['/tours', '0']"></span>
       </div>
     </div>
-    <div class="row">
-      <table class="col-xs-12 table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th >Description</th>
-            <th>Creator</th>
-            <th>Places...</th>
-            <th >Start Date</th>
-            <th >Duration in Days</th>
-            <th >Total Price</th>
-            <th >Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tour of tours | tourFilterByPlace:listFilter.place 
+  </div>
+  <div class="row">
+    <table class="col-xs-12 table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Creator</th>
+          <th>Places...</th>
+          <th>Start Date</th>
+          <th>Duration in Days</th>
+          <th>Total Price</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tour of tours | tourFilterByPlace:listFilter.place 
           | tourFilterByDescription:listFilter.description
           | tourFilterByAfterDate:listFilter.after
           | tourFilterByBeforeDate:listFilter.before
           | tourSort:fieldToSort:orderToSort">
-            <td>{{tour.description}}...</td>
-            <td>{{tour.creator}}</td>
-            <td>
-              {{tour.tourPoints[0].city}}
-            </td>
-            <td >{{tour.tourPoints[0].startDate | date}}</td>
-            <td >{{getDuration(tour)}}</td>
-            <td >{{tour.price}}</td>
-            <td >
-              {{tour.rating}}
-              <span class="pull-right glyphicon glyphicon-pencil"
-                [routerLink]="['/tours', tour._id]">
+          <td>{{tour.description}}...</td>
+          <td>{{tour.creator}}</td>
+          <td>
+            {{tour.tourPoints[0].city}}...
+          </td>
+          <td>{{tour.tourPoints[0].startDate | date}}</td>
+          <td>{{getDuration(tour)}}</td>
+          <td>{{tour.price}}</td>
+          <td>
+            {{tour.rating}}
+          </td>
+          <td>
+            <span class="pull-left glyphicon glyphicon-comment" [routerLink]="['/details', tour._id]">
               </span>
-              .
-              <span class="pull-right glyphicon glyphicon-comment"
-                [routerLink]="['/tours', tour._id]">
+            <span class="pull-right glyphicon glyphicon-pencil" [routerLink]="['/tours', tour._id]">
               </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>

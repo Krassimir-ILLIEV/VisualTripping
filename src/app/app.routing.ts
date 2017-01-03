@@ -14,7 +14,7 @@ const routes: Route[] = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'tours', component: TourPageComponent },
-  { path: 'create', component: CreateTourPageComponent, canActivate: [AuthenticationGuard] },
+  { path: 'create', component: TourFormComponent, canActivate: [AuthenticationGuard] },
   { path: 'profile', component: ProfilePageComponent, canActivate: [AuthenticationGuard] },
   { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];

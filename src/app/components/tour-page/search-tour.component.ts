@@ -28,7 +28,7 @@ export class SearchTourComponent implements OnInit {
       .subscribe(places => {
         this.places = places;
         this.places.splice(0, 0, { country: 'None', name: '' }); // = data.tour;
-        console.log("places:"+JSON.stringify(this.places));
+        //console.log("places:"+JSON.stringify(this.places));
       });
   }
 }

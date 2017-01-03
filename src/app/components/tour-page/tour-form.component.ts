@@ -119,8 +119,16 @@ export class TourFormComponent implements OnInit {
         ''
       );
     }
+    tour.pictures = [];
+    for (let tourPoint of tour.tourPoints) {
+      let place = this.places.filter(p => p.name === tourPoint.city && p.country === tourPoint.country);
+      console.log('place-------------' + place);
+      if (place && place.length > 0 && place[0].cityUrl && place[0].cityUrl !== '') {
+        tour.pictures.push(place[0].cityUrl);
+      }
+    }
     this.toursData.publicateTour(tour)
-      .subscribe(res => console.log(res));
+      .subscribe(res => console.log('publicateTour' + res));
 
     this._router.navigate(['/tours']);
   }
