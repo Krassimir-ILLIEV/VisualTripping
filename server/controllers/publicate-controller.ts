@@ -45,9 +45,7 @@ module.exports = function ({ data }) {
                         const userTourData = {
                             userOfferTours: {
                                 tourId: tour.getId,
-                                tourTitle: tour.headline,
-                                tourCountry: tour.country,
-                                tourCity: tour.city,
+                                tourTitle: tour.title,
                                 isDeleted: 'false'
                             }
                         };

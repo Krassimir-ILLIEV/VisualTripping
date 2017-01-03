@@ -61,7 +61,7 @@ module.exports = function ({ data }) {
                 .then(dataCollection => {
                     const userTourData = {
                         tourId: dataCollection.tour.getId,
-                        tourTitle: dataCollection.tour.headline,
+                        tourTitle: dataCollection.tour.title,
                         tourCountry: dataCollection.tour.country,
                         tourCity: dataCollection.tour.city,
                         isDeleted: 'false'
