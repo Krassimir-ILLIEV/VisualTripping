@@ -52,4 +52,9 @@ export class UserService {
         return this.http.get(this.profileUrl)
             .map((res: Response) => res.json());
     }
+
+    updateUserInfo(userToUpdate) {
+        return this.http.post(this.usersUrl + '/profile/', userToUpdate)
+            .map((res: Response) => res.json());
+    }
 }

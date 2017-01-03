@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{user.username}}</h3>
+        </div>
+        <div class="panel-body">
+          <form [formGroup]="editForm" #formEdit="ngForm" class="form-edit" (ngSubmit)="edit()">
+            <div class="row">
+              <div class="col-md-3 col-lg-3 " align="center">
+                <img alt="User Pic" [src]="userAvatar" class="img-circle img-responsive">
+              </div>
+              <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>Avatar:</td>
+                      <td>
+                        <div class="form-group">
+                          <label for="form-password" class="sr-only">Avatar</label>
+                          <input #avatarInput id="form-avatar" name="text" class="form-control" value="{{user.avatar}}" type="text" formControlName="avatar" (change)="avatarChange(avatarInput.value)">
+                          <span class="text-danger" *ngIf="!editForm.controls['avatar'].valid && editForm.controls['avatar'].touched">Please enter correct avatar</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>First name:</td>
+                      <td>
+                        <div class="form-group">
+                          <label for="form-firstname" class="sr-only">First name</label>
+                          <input id="form-firstname" name="firstname" class="form-control" value="{{user.firstname}}" type="text" formControlName="firstname">
+                          <span class="text-danger" *ngIf="!editForm.controls['firstname'].valid && editForm.controls['firstname'].touched">Please enter correct name</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Last name:</td>
+                      <td>
+                        <div class="form-group">
+                          <label for="form-lastname" class="sr-only">Last name</label>
+                          <input id="form-lastname" name="lastname" class="form-control" value="{{user.lastname}}" type="text" formControlName="lastname">
+                          <span class="text-danger" *ngIf="!editForm.controls['lastname'].valid && editForm.controls['lastname'].touched">Please enter correct name</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Email:</td>
+                      <td>
+                        <div class="form-group">
+                          <label for="form-email" class="sr-only">Email</label>
+                          <input id="form-email" name="email" class="form-control" value="{{user.email}}" type="email" formControlName="email">
+                          <span class="text-danger" *ngIf="!editForm.controls['email'].valid && editForm.controls['email'].touched">Please enter correct email</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Save now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

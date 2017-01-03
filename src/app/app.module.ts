@@ -19,6 +19,7 @@ import { CreateTourPageComponent } from './components/create-tour-page/create-to
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PublicProfilePageComponent } from './components/public-profile-page/public-profile-page.component';
+import { ProfileEditPageComponent } from './components/profile-edit-page/profile-edit-page.component';
 
 import { UserService } from './../services/user.service';
 
@@ -48,6 +49,7 @@ import { AuthenticationGuard } from './guards/authentication.guard';
     ProfilePageComponent,
     NavigationComponent,
     PublicProfilePageComponent,
+    ProfileEditPageComponent,
 
     CollapseDirective
   ],
