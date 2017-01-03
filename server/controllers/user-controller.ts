@@ -1,4 +1,4 @@
-module.exports = function({ data }) {
+module.exports = function ({ data }) {
     return {
         getLoggedUserData(req, res) {
             data.getUserByUsername(req.user.username)
@@ -26,7 +26,14 @@ module.exports = function({ data }) {
         },
         getUserByUsername(req, res) {
             data.getUserByUsername(req.params.username)
-                .then(user => {
+                .then(foundUser => {
+                    let user = {
+                        username: foundUser.username,
+                        firstname: foundUser.firstname,
+                        lastname: foundUser.lastname,
+                        avatar: foundUser.avatar,
+                        userOfferTours: foundUser.userOfferTours
+                    };
                     res.status(200)
                         .json(user);
                 })
@@ -46,13 +53,14 @@ module.exports = function({ data }) {
                     user.email = req.body.email || user.email;
                     user.city = req.body.city || user.city;
                     user.country = req.body.country || user.country;
+                    user.avatar =  req.body.avatar || user.avatar;
 
                     return data.updateUser(user);
                 })
                 .then(user => {
                     console.log(`USER ${user.username} HAS BEEN SUCCESFULLY UPDATED!`);
 
-                    res.status(301).json({success: true, message: 'profile updated successfully'});
+                    res.status(301).json({ success: true, message: 'profile updated successfully' });
                 })
                 .catch(err => {
                     console.log(`UPDATE FAILED! ${req.user.username} :${err}`);

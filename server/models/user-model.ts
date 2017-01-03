@@ -1,4 +1,3 @@
-// mongoose = require("mongoose");
 module.exports = function ({mongoose}) {
     let allRoles = ['admin', 'moderator', 'regular'];
 
